@@ -13,7 +13,7 @@
     <meta property="og:locale" content="tr_TR">
     <meta property="og:title" content="StilCrochet | El Yapımı Amigurumi">
     <meta property="og:description" content="El yapımı amigurumi ve örgü tasarımları, örgü tarifleri. Tasarım örneği.">
-    <meta property="og:image" content="https://silasezgin442-design.github.io/amigurumi-satis/arkaplan.webp">
+    <meta property="og:image" content="https://silasezgin442-design.github.io/amigurumi-satis/images/hero.webp">
 
     <!-- Açılış animasyonu: "hareketi azalt" kapalıysa sayfaya işaret koy (sayfa çizilmeden önce) -->
     <script>if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) document.documentElement.classList.add("acilis")</script>
@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
-    <link rel="stylesheet" href="anasayfam.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
         <a href="#urunler">Ürünler</a>
         <a href="#hakkimizda">Hakkımızda</a>
         <div class="yanyana">
-        <i class="fa-solid fa-magnifying-glass"></i><input type="search" name="" id="özellik" placeholder="arama"></div>
+        <i class="fa-solid fa-magnifying-glass"></i><input type="search" name="arama" id="arama" placeholder="arama"></div>
    </nav>
    
     <div class="arkaplan" id="anasayfa">
@@ -86,7 +86,7 @@
   <div class="urun-grid">     
          
     <div class="urun-kart">
-      <div class="suanlik-resim"><img src="ikili anahtarlıklar.jpeg" alt="İkili Amigurumi Anahtarlık" width="646" height="735" loading="lazy" decoding="async"></div>
+      <div class="suanlik-resim"><img src="images/ikili-anahtarlik.jpg" alt="İkili Amigurumi Anahtarlık" width="646" height="720" loading="lazy" decoding="async"></div>
       <div class="metin">
       <p>Anahtarlık</p>
       <h3>İkili Amigurumi Anahtarlık</h3></div>
@@ -96,7 +96,7 @@
     </div>
     </div>
     <div class="urun-kart ">
-      <div class="suanlik-resim"><img src="kücükkız.jpeg" alt="Küçük Kız Bebek" width="681" height="1321" loading="lazy" decoding="async"></div>
+      <div class="suanlik-resim"><img src="images/kucuk-kiz.jpg" alt="Küçük Kız Bebek" width="681" height="1311" loading="lazy" decoding="async"></div>
       <div class="metin">
       <p>Amigurumi Bebek</p>
       <h3>Küçük Kız Bebek</h3></div>
@@ -107,7 +107,7 @@
     </div>
 
     <div class="urun-kart ">
-      <div class="suanlik-resim"><img src="orgu ikikız.jpeg" alt="İkiz Kardeşler Seti" width="719" height="1287" loading="lazy" decoding="async"></div>
+      <div class="suanlik-resim"><img src="images/ikiz-kardesler.jpg" alt="İkiz Kardeşler Seti" width="709" height="1269" loading="lazy" decoding="async"></div>
       <div class="metin">
       <p>Amigurumi Bebek</p>
       <h3>İkiz Kardeşler Seti</h3></div>
@@ -118,7 +118,7 @@
     </div>
 
     <div class="urun-kart ">
-      <div class="suanlik-resim"><img src="orgukız.jpeg" alt="Örgü Saçlı Kız" width="657" height="946" loading="lazy" decoding="async"></div>
+      <div class="suanlik-resim"><img src="images/orgu-sacli-kiz.jpg" alt="Örgü Saçlı Kız" width="657" height="945" loading="lazy" decoding="async"></div>
       <div class="metin">
       <p>Amigurumi Bebek</p>
       <h3>Örgü Saçlı Kız</h3></div>
@@ -143,7 +143,7 @@
         <div class="urun-card2">
             <div class="ikon-icin"><i class="fa-solid fa-star"></i></div>
            
-            <div class="metin"> <p style="background-color: rgba(76, 169, 115, 0.541);">BAŞLANGIÇ</p>
+            <div class="metin"> <p class="seviye seviye-baslangic">BAŞLANGIÇ</p>
                 <p>Mini Kaktüs Amigurumi</p>
                 <span>45 dk · 12 adım</span>
             </div>
@@ -151,7 +151,7 @@
         <div class="urun-card2">
             <div class="ikon-icin"><i class="fa-solid fa-fire"></i></div>
            
-            <div class="metin"> <p style="background-color: rgba(230, 108, 27, 0.541);">ORTA</p>
+            <div class="metin"> <p class="seviye seviye-orta">ORTA</p>
                 <p>Sevimli Ayıcık Amigurumi</p>
                 <span>2 saat · 20 adım</span>
             </div>
@@ -159,7 +159,7 @@
         <div class="urun-card2">
             <div class="ikon-icin"><i class="fa-solid fa-award"></i></div>
             
-            <div class="metin"><p style="background-color: rgba(216, 135, 115, 0.915);">İLERİ</p>
+            <div class="metin"><p class="seviye seviye-ileri">İLERİ</p>
                 <p>Uzun Bacaklı Tavşan Amigurumi</p>
                 <span>4 saat · 32 adım</span>
             </div>

@@ -31,11 +31,6 @@ body{
 h1, h2, h3{
     font-family: var(--font-baslik);
 }
-slider-wrap{
-    overflow: hidden;
-    max-width: 1300px;
-    margin: 0 50px 40px;
-}
 
 /* Üst menü */
 .navbar{
@@ -75,10 +70,6 @@ a{
 .navbar h2:hover {
     color: var(--renk-altın);
 }
-header{
-    background-color: rgb(213, 193, 169);
-    height: 800px;
-}
 .yanyana{
     display: flex;
     justify-content: center;
@@ -104,7 +95,7 @@ header{
 /* Hero */
 .arkaplan{
     padding-top: 10vh;
-    background-image: url(arkaplan.webp);
+    background-image: url(images/hero.webp);
     /* Resmin ekrana tam oturması ve bozulmaması için */
     background-size: cover;
     /* --kayma JavaScript'ten gelir (0-1), kaydırdıkça resim hafifçe aşağı kayar (parallax) */
@@ -273,11 +264,6 @@ header{
     font-size: 15px;
     color: var(--renk-kahve-açık);
 }
-.divkapsayıcı2{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-}
 
 /* Ürün kartları */
 .urun-grid{
@@ -376,7 +362,7 @@ header{
 .urun-card2 .metin{
     padding: 0;
 }
-/* Zorluk etiketi (renkleri HTML'de) */
+/* Zorluk etiketi */
 .urun-card2 .metin p:first-child{
     display: inline-block;
     padding: 3px 10px;
@@ -385,6 +371,15 @@ header{
     font-weight: 600;
     letter-spacing: 0.1em;
     margin-bottom: 6px;
+}
+.seviye-baslangic{
+    background-color: rgba(76, 169, 115, 0.541);
+}
+.seviye-orta{
+    background-color: rgba(230, 108, 27, 0.541);
+}
+.seviye-ileri{
+    background-color: rgba(216, 135, 115, 0.915);
 }
 .urun-card2 .metin p:nth-child(2){
     font-family: var(--font-baslik);
@@ -412,33 +407,6 @@ header{
     .kalan-btn:hover{
         transform: translateY(-1px);
     }
-}
-
-/* Yorum bölümü stilleri (bölüm şu an sayfada yok) */
-.ana-kapsayici4{
-    background-color: #3B2A1A;
-    padding: 48px 32px
-}
-.ana-başlık2{display: flex;
-    justify-content: center;
-   align-items: center;
-   color: #FAF0E0;
-   font-size: 20px;
-  flex-direction: column;
-    }
-.yorum-kartı{
-    border-radius: 5px;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-}
-.metin2{
-    color: #FAF0E0;
-    background-color: #4E3825;
-    border-left: 3px solid #C9923A;
-    padding: 16px;
-    border-radius: 4px;
 }
 
 /* Kaydırınca belirme (sınıfları JavaScript ekler) */
@@ -593,7 +561,7 @@ section{
                 rgba(250, 247, 242, 0) 86%,
                 rgba(250, 247, 242, 0.5) 95%,
                 #FAF7F2 100%),
-            url(arkaplan.webp);
+            url(images/hero.webp);
         background-size: 100% 100%, 178.3% auto;
         background-position: 0 0, right bottom;
         background-repeat: no-repeat;
