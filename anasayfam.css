@@ -550,49 +550,53 @@ section{
         scroll-margin-top: 90px;
     }
 
-    /* Hero: görsel üstte kırpılmadan, yazılar altında */
+    /* Hero: görselin sağ tarafı (ürünler) görünsün, yazılar alttaki koyu geçişin üstünde */
     .arkaplan{
-        background-image: none;
-        background-color: var(--renk-krem);
-        height: auto;
-        padding: 82px 0 40px;
-        justify-content: flex-start;
-    }
-    .arkaplan::before{
-        content: "";
-        display: block;
-        width: 100%;
-        aspect-ratio: 1366 / 768;
-        background-image: url(arkaplan.png);
+        background-image:
+            linear-gradient(to bottom,
+                rgba(59, 42, 26, 0) 30%,
+                rgba(59, 42, 26, 0.75) 58%,
+                #3B2A1A 85%),
+            url(arkaplan.png);
         background-size: cover;
-        background-position: center;
-        margin-bottom: 28px;
-    }
-    .arkaplan > h3,
-    .arkaplan > h1,
-    .arkaplan > p,
-    .arkaplan > a{
-        margin-left: 16px;
-        margin-right: 16px;
+        background-position: 78% center;
+        background-color: var(--renk-kahve-koyu);
+        height: auto;
+        min-height: 560px;
+        padding: 82px 16px 40px;
+        justify-content: flex-end;
     }
     .ana-başlık{
         margin-top: 0;
         margin-bottom: 6px;
         font-size: 17px;
+        color: #FAF0E0;
     }
     .ikinci-başlık{
         font-size: 32px;
         line-height: 1.15;
         margin-bottom: 12px;
+        color: var(--renk-altın);
     }
     .açıklama{
         font-size: 15px;
         line-height: 1.6;
+        color: rgba(250, 240, 224, 0.9);
+    }
+    .ana-başlık,
+    .ikinci-başlık,
+    .açıklama{
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
     }
     .buttons{
         margin-top: 22px;
         font-size: 15px;
         padding: 12px 26px;
+        background-color: var(--renk-altın);
+        color: var(--renk-kahve-koyu);
+    }
+    .buttons:hover{
+        background-color: var(--renk-krem);
     }
 
     /* Bölüm başlıkları ve düğmeler */
@@ -616,35 +620,81 @@ section{
         padding: 8px 18px;
     }
 
-    /* Kartlar: tek sütun, eşit boşluklar */
     .ana-kapsayici1,
     .ana-kapsayici2,
     .ana-kapsayici3{
         padding: 56px 16px;
     }
-    .div-kapsayıcı1,
-    .urun-grid,
+
+    /* Neden StilCrochet: 2×2 kompakt kutular */
+    .ana-kapsayici1{
+        padding: 40px 16px;
+    }
+    .ana-kapsayici1 .bolum-baslik{
+        margin-bottom: 24px;
+    }
+    .div-kapsayıcı1{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .div-kapsayıcı1 div{
+        padding: 16px 10px;
+    }
+    .div-kapsayıcı1 i{
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    .div-kapsayıcı1 h2{
+        font-size: 15px;
+        line-height: 1.3;
+        margin-bottom: 4px;
+    }
+    .div-kapsayıcı1 p{
+        font-size: 13px;
+        line-height: 1.4;
+    }
+
+    /* Ürünler: 2'li, kare resim, fiyat ve düğme alt alta */
+    .urun-grid{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    .suanlik-resim{
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+    .urun-kart .metin{
+        padding: 12px 12px 4px;
+    }
+    .urun-kart .metin p{
+        font-size: 10px;
+        letter-spacing: 0.1em;
+    }
+    .urun-kart h3{
+        font-size: 15px;
+        line-height: 1.25;
+    }
+    .yanyana2{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding: 4px 12px 12px;
+    }
+    .yanyana2 span{
+        font-size: 15px;
+    }
+    .kalan-btn{
+        width: 100%;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    /* Tarifler: tek sütun */
     .tarif-grid{
         grid-template-columns: 1fr;
         gap: 16px;
-    }
-    .div-kapsayıcı1 div{
-        padding: 24px 16px;
-    }
-    .div-kapsayıcı1 i{
-        width: 56px;
-        height: 56px;
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
-    .div-kapsayıcı1 h2{
-        font-size: 18px;
-    }
-    .suanlik-resim{
-        height: 240px;
-    }
-    .urun-kart h3{
-        font-size: 18px;
     }
     .urun-card2{
         padding: 16px;
