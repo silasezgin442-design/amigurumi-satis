@@ -550,53 +550,68 @@ section{
         scroll-margin-top: 90px;
     }
 
-    /* Hero: görselin sağ tarafı (ürünler) görünsün, yazılar alttaki koyu geçişin üstünde */
+    /* Hero: görsel üstte kendi renkleriyle, alt kenarı krem sayfa rengine geçer,
+       yazılar altında krem zeminde */
     .arkaplan{
+        background-image: none;
+        background-color: var(--renk-krem);
+        height: auto;
+        padding: 82px 0 32px;
+        justify-content: flex-start;
+    }
+    /* Görselin sadece boş sol ve üst duvarı dışarıda kalır (sağdaki %56'lık kısım,
+       üstten ~150px kırpılmış), baykuş, tilki ve yumaklar tam görünür */
+    .arkaplan::before{
+        content: "";
+        display: block;
+        width: 100%;
+        aspect-ratio: 766 / 618;
         background-image:
             linear-gradient(to bottom,
-                rgba(59, 42, 26, 0) 30%,
-                rgba(59, 42, 26, 0.75) 58%,
-                #3B2A1A 85%),
+                rgba(250, 247, 242, 0) 82%,
+                rgba(250, 247, 242, 0.5) 93%,
+                #FAF7F2 100%),
             url(arkaplan.png);
-        background-size: cover;
-        background-position: 78% center;
-        background-color: var(--renk-kahve-koyu);
-        height: auto;
-        min-height: 560px;
-        padding: 82px 16px 40px;
-        justify-content: flex-end;
+        background-size: 100% 100%, 178.3% auto;
+        background-position: 0 0, right bottom;
+        background-repeat: no-repeat;
+        margin-bottom: -20px;
+    }
+    .arkaplan > h3,
+    .arkaplan > h1,
+    .arkaplan > p,
+    .arkaplan > a{
+        position: relative;
+        margin-left: 16px;
+        margin-right: 16px;
     }
     .ana-başlık{
         margin-top: 0;
         margin-bottom: 6px;
         font-size: 17px;
-        color: #FAF0E0;
+        color: var(--renk-kahve-açık);
     }
     .ikinci-başlık{
-        font-size: 32px;
+        font-size: 30px;
         line-height: 1.15;
         margin-bottom: 12px;
-        color: var(--renk-altın);
+        color: var(--renk-kahve-koyu);
     }
     .açıklama{
         font-size: 15px;
         line-height: 1.6;
-        color: rgba(250, 240, 224, 0.9);
-    }
-    .ana-başlık,
-    .ikinci-başlık,
-    .açıklama{
-        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+        color: var(--renk-kahve-koyu);
     }
     .buttons{
-        margin-top: 22px;
+        margin-top: 14px;
         font-size: 15px;
         padding: 12px 26px;
         background-color: var(--renk-altın);
         color: var(--renk-kahve-koyu);
     }
     .buttons:hover{
-        background-color: var(--renk-krem);
+        background-color: var(--renk-kahve-açık);
+        color: var(--renk-krem);
     }
 
     /* Bölüm başlıkları ve düğmeler */
