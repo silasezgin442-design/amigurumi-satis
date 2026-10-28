@@ -108,7 +108,8 @@ header{
     background-image: url(arkaplan.png);
     /* Resmin ekrana tam oturması ve bozulmaması için */
     background-size: cover;
-    background-position: center;
+    /* --kayma JavaScript'ten gelir (0-1), kaydırdıkça resim hafifçe aşağı kayar (parallax) */
+    background-position: center calc(50% - var(--kayma, 0) * 30%);
 
     height: 700px; /* İçeriklerin düzgün durması için kutuya bir yükseklik vermeliyiz */
 
@@ -439,14 +440,17 @@ header{
     border-radius: 4px;
 }
 
+/* Kaydırınca belirme (sınıfları JavaScript ekler) */
 .gizle{
     opacity: 0;
-    transition: all 2000ms ease;
-    transform: translateY(80px)
+    transform: translateY(24px);
 }
-.goster{
+.gizle.goster{
     opacity: 1;
-    transform: translateY(0)
+    transform: translateY(0);
+    transition:
+        opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Menü linkleri bölümlere yumuşak kaysın, sabit menü başlıkları örtmesin */
@@ -455,6 +459,20 @@ html{
 }
 section{
     scroll-margin-top: 10vh;
+}
+
+/* "Hareketi azalt" açıksa: yumuşak kaydırma ve animasyonlar kapalı, içerik hep görünür */
+@media (prefers-reduced-motion: reduce){
+    html{
+        scroll-behavior: auto;
+    }
+    .gizle{
+        opacity: 1;
+        transform: none;
+    }
+    .arkaplan::before{
+        transform: none;
+    }
 }
 
 /* Footer */
@@ -576,6 +594,9 @@ section{
         background-position: 0 0, right bottom;
         background-repeat: no-repeat;
         margin-bottom: -20px;
+        /* Parallax: kaydırdıkça en fazla 40px aşağı kayar */
+        transform: translateY(calc(var(--kayma, 0) * 40px));
+        will-change: transform;
     }
     .arkaplan > h3,
     .arkaplan > h1,

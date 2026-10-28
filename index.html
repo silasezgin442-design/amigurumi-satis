@@ -158,30 +158,88 @@
     <p>Bu site bir tasarım örneğidir, satış yapılmamaktadır.</p>
    </footer>
   <script>
-     
-   // 1. Observer kur — eleman ekrana girince çalış
-const observer = new IntersectionObserver((entries) => {
-    // entries → ekrana giren elemanların listesi
-    entries.forEach((entry) => {
-        // entry → listedeki tek bir eleman
-        if (entry.isIntersecting) {
-            // isIntersecting → "ekranda mı?" sorusunun cevabı, true/false
-            entry.target.classList.add("goster")
-            // target → o anki elemanın kendisi
-            entry.target.classList.remove("gizle")
-        }
+
+// 0. "Hareketi azalt" ayarı açıksa ya da tarayıcı desteklemiyorsa hiçbir şey gizlenmez
+const hareketiAzalt = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+const destekVar = "IntersectionObserver" in window
+
+if (!hareketiAzalt && destekVar) {
+
+    // 1. Observer kur — eleman ekrana girince çalış
+    const observer = new IntersectionObserver((entries) => {
+        // entries → ekrana giren elemanların listesi
+        entries.forEach((entry) => {
+            // entry → listedeki tek bir eleman
+            if (entry.isIntersecting) {
+                // isIntersecting → "ekranda mı?" sorusunun cevabı, true/false
+                const eleman = entry.target
+                // target → o anki elemanın kendisi
+                eleman.classList.add("goster")
+                observer.unobserve(eleman)
+                // unobserve → bir kez belirdi, artık izlemeye gerek yok
+
+                // Animasyon bitince sınıfları ve gecikmeyi temizle,
+                // kartların "üstüne gelince yükselme" efekti eskisi gibi anında çalışsın
+                function temizle(olay) {
+                    // İçindeki resim/düğme geçişleri değil, sadece kartın kendi animasyonu sayılsın
+                    if (olay.target !== eleman) return
+                    eleman.classList.remove("gizle", "goster")
+                    eleman.style.transitionDelay = ""
+                    eleman.removeEventListener("transitionend", temizle)
+                }
+                eleman.addEventListener("transitionend", temizle)
+            }
+        })
+    }, { threshold: 0.15, rootMargin: "0px 0px -40px 0px" })
+    // threshold → elemanın yüzde kaçı göründüğünde tetiklensin, 0.15 = %15
+    // rootMargin → ekranın en altına gelmeden biraz önce değil, 40px içeri girince başlasın
+
+    // 2. Elemanları seç, gizle ve izlemeye başla
+    // (gizle sınıfını HTML'e değil buraya koyuyoruz: JavaScript çalışmazsa içerik görünür kalır)
+    document.querySelectorAll(".bolum-baslik").forEach((baslik) => {
+        baslik.classList.add("gizle")
+        observer.observe(baslik)
     })
-}, { threshold: 0.2 })
-// threshold → elemanın yüzde kaçı göründüğünde tetiklensin, 0.2 = %20
 
-// 2. Elemanları seç ve izlemeye başla
-const elemanlar = document.querySelectorAll(".gizle")
-// querySelectorAll → sayfadaki tüm .gizle elemanları seç
+    // Kart grupları: her gruptaki kartlar sırayla, 90ms arayla gelsin
+    const kartGruplari = [
+        ".div-kapsayıcı1 > div",
+        ".urun-grid > .urun-kart",
+        ".tarif-grid > .urun-card2"
+    ]
+    kartGruplari.forEach((secici) => {
+        document.querySelectorAll(secici).forEach((kart, sira) => {
+            kart.classList.add("gizle")
+            kart.style.transitionDelay = (sira % 4) * 90 + "ms"
+            observer.observe(kart)
+        })
+    })
 
-elemanlar.forEach((eleman) => {
-    observer.observe(eleman)
-    // observe → "bu elemanı izlemeye başla" demek
-})
+    // 3. Hero parallax — kaydırdıkça resim sayfadan biraz yavaş kaysın
+    const hero = document.querySelector(".arkaplan")
+    let sonOran = -1
+    let bekliyor = false
+
+    function parallaxGuncelle() {
+        bekliyor = false
+        // oran → hero'nun ne kadarı kaydırıldı, 0 ile 1 arası
+        const oran = Math.min(Math.max(window.scrollY / hero.offsetHeight, 0), 1)
+        if (oran === sonOran) return
+        sonOran = oran
+        hero.style.setProperty("--kayma", oran.toFixed(3))
+    }
+
+    window.addEventListener("scroll", () => {
+        // requestAnimationFrame → ekran yenilenmeden hemen önce, kare başına en fazla bir kez çalış
+        if (!bekliyor) {
+            bekliyor = true
+            requestAnimationFrame(parallaxGuncelle)
+        }
+    }, { passive: true })
+    // passive → kaydırmayı hiç bekletme, telefonda akıcı kalsın
+
+    parallaxGuncelle()
+}
 
   </script>
 </body>
