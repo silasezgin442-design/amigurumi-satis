@@ -320,57 +320,169 @@ section{
 
 /* Telefon */
 @media (max-width: 600px){
+    /* Menü: 1. satır marka ortada + arama ikonu sağda, 2. satır linkler */
     .navbar{
         height: auto;
         flex-wrap: wrap;
-        gap: 8px 16px;
-        padding: 10px;
+        row-gap: 8px;
+        padding: 12px 12px 10px;
     }
     .navbar h2{
         width: 100%;
         text-align: center;
+        font-size: 20px;
+        line-height: 34px;
     }
-    .navbar input{
-        width: 140px;
+    .navbar a{
+        font-size: 13px;
+        white-space: nowrap;
+    }
+    /* Arama: normalde sadece ikon, dokununca genişler */
+    .yanyana{
+        position: absolute;
+        top: 12px;
+        right: 12px;
+    }
+    .yanyana i{
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 14px;
+        pointer-events: none;
+        transition: color 0.3s ease;
+    }
+    .yanyana input{
+        -webkit-appearance: none;
+        appearance: none;
+        width: 34px;
+        height: 34px;
+        padding: 0 12px 0 34px;
+        border: none;
+        border-radius: 17px;
+        background-color: rgba(255, 255, 255, 0.15);
+        color: transparent;
+        font-size: 16px;
+        outline: none;
+        cursor: pointer;
+        transition: width 0.3s ease, background-color 0.3s ease;
+    }
+    .yanyana input::placeholder{
+        color: transparent;
+    }
+    .yanyana input:focus{
+        width: calc(100vw - 24px);
+        background-color: #FAF7F2;
+        color: #3B2A1A;
+        cursor: text;
+    }
+    .yanyana input:focus::placeholder{
+        color: #9a8a76;
+    }
+    .yanyana:focus-within i{
+        color: #3B2A1A;
     }
     section{
-        scroll-margin-top: 140px;
+        scroll-margin-top: 90px;
     }
+
+    /* Hero: görsel üstte kırpılmadan, yazılar altında */
     .arkaplan{
-        padding-top: 140px;
-        padding-left: 6%;
-        padding-right: 6%;
+        background-image: none;
+        background-color: var(--renk-krem);
         height: auto;
-        min-height: 500px;
+        padding: 82px 0 32px;
+        justify-content: flex-start;
+    }
+    .arkaplan::before{
+        content: "";
+        display: block;
+        width: 100%;
+        aspect-ratio: 1366 / 768;
+        background-image: url(arkaplan.png);
+        background-size: cover;
+        background-position: center;
+        margin-bottom: 24px;
+    }
+    .arkaplan > h3,
+    .arkaplan > h1,
+    .arkaplan > p,
+    .arkaplan > a{
+        margin-left: 16px;
+        margin-right: 16px;
     }
     .ana-başlık{
-        font-size: 130%;
+        margin-top: 0;
+        margin-bottom: 6px;
+        font-size: 15px;
+        color: var(--renk-kahve-açık);
     }
     .ikinci-başlık{
-        font-size: 220%;
+        font-size: 28px;
+        line-height: 1.2;
+        margin-bottom: 12px;
     }
     .açıklama{
+        font-size: 15px;
+        line-height: 1.5;
+        color: var(--renk-kahve-koyu);
+    }
+    .buttons{
+        margin-top: 20px;
         font-size: 16px;
+        padding: 12px 24px;
+        border-radius: 8px;
+    }
+
+    /* Bölüm başlıkları ve düğmeler */
+    .bolum-baslik{
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .bolum-baslik p{
+        font-size: 14px;
+    }
+    .bolum-baslik h2{
+        font-size: 22px;
+    }
+    .tum-btn{
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    /* Kartlar: tek sütun, eşit boşluklar */
+    .ana-kapsayici1,
+    .ana-kapsayici2,
+    .ana-kapsayici3{
+        padding: 32px 16px;
     }
     .div-kapsayıcı1,
     .urun-grid,
     .tarif-grid{
         grid-template-columns: 1fr;
+        gap: 16px;
     }
     .div-kapsayıcı1{
-        padding: 16px 0;
+        padding: 0;
+    }
+    .div-kapsayıcı1 i{
+        font-size: 24px;
+        margin-bottom: 6px;
+    }
+    .div-kapsayıcı1 h2{
+        font-size: 18px;
+    }
+    .urun-kart{
+        padding: 12px;
+    }
+    .suanlik-resim{
+        height: 240px;
+    }
+    .urun-kart h3{
+        font-size: 17px;
     }
     .urun-card2{
-        margin: 10px 0;
-    }
-    .bolum-baslik{
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 16px;
-    }
-    .ana-kapsayici1,
-    .ana-kapsayici2,
-    .ana-kapsayici3{
-        padding: 32px 16px;
+        margin: 0;
     }
 }
