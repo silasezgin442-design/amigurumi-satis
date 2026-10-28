@@ -191,7 +191,7 @@ a{
     margin: 0 auto;
 }
 .bolum-baslik p{
-    color: var(--renk-altın-koyu);
+    color: var(--renk-altın);
     display: inline-block;
     font-size: 13px;
     font-weight: 600;
@@ -266,8 +266,11 @@ a{
     box-shadow: var(--golge);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+/* Resmin tamamı görünsün: dikey 3:4 kutu, resim kesilmeden içine sığar;
+   oranı tutmayan kenarlar fotoğrafların duvar rengine yakın zeminle dolar */
 .suanlik-resim{
-    height: 280px;
+    aspect-ratio: 3 / 4;
+    background-color: #EDE9E3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -276,9 +279,7 @@ a{
 .suanlik-resim img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    /* Dikey bebek fotoğraflarında yüzler kesilmesin: kırpma üst tarafa yakın */
-    object-position: center 20%;
+    object-fit: contain;
     display: block;
     transition: all 0.4s ease;
 }
@@ -296,7 +297,7 @@ a{
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: var(--renk-altın-koyu);
+    color: var(--renk-altın);
     margin-bottom: 4px;
 }
 .urun-kart h3{
@@ -456,7 +457,7 @@ section{
     align-items: center;
 }
 .ust-yazi{
-    color: var(--renk-altın-koyu);
+    color: var(--renk-altın);
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 0.18em;
@@ -847,14 +848,10 @@ button:focus-visible,
         line-height: 1.4;
     }
 
-    /* Ürünler: 2'li, kare resim, fiyat ve düğme alt alta */
+    /* Ürünler: 2'li, resim kutusu masaüstüyle aynı 3:4, fiyat ve düğme alt alta */
     .urun-grid{
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
-    }
-    .suanlik-resim{
-        height: auto;
-        aspect-ratio: 1 / 1;
     }
     .urun-kart .metin{
         padding: 12px 12px 4px;
@@ -1046,25 +1043,48 @@ button:focus-visible,
 .benzer-urunler .urun-grid{
     grid-template-columns: repeat(3, 1fr);
 }
+/* Bu kartlar tıklanmıyor; tıklanır gibi yükselip büyümesinler */
+@media (hover: hover){
+    .benzer-urunler .urun-kart:hover{
+        transform: none;
+        box-shadow: var(--golge);
+    }
+    .benzer-urunler .suanlik-resim:hover img{
+        transform: none;
+    }
+}
+.benzer-alt{
+    text-align: center;
+    margin-top: 40px;
+}
+/* Çerçeveli, içi boş ikincil düğme */
+.ikincil-btn{
+    display: inline-block;
+    padding: 12px 28px;
+    border: 1.5px solid var(--renk-kahve-açık);
+    border-radius: 999px;
+    color: var(--renk-kahve-açık);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.ikincil-btn:hover{
+    background-color: var(--renk-kahve-açık);
+    color: var(--renk-krem);
+}
 
 /* Tarif detayı */
 .tarif-baslik{
-    display: flex;
-    gap: 32px;
-    align-items: flex-start;
-    padding: 32px var(--yan-bosluk) 56px;
+    padding: 32px var(--yan-bosluk) 48px;
 }
-.tarif-baslik-ikon{
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 96px;
-    height: 96px;
-    border-radius: 24px;
-    background-color: var(--renk-bej);
-    color: var(--renk-altın);
-    font-size: 40px;
+/* Etiket, başlık, açıklama ve bilgiler tek bir kartta */
+.tarif-baslik-kart{
+    background-color: var(--renk-beyaz);
+    border-radius: var(--kose);
+    border-left: 4px solid var(--renk-altın);
+    box-shadow: var(--golge);
+    padding: 36px 40px;
 }
 .tarif-baslik .seviye{
     display: inline-block;
@@ -1081,24 +1101,29 @@ button:focus-visible,
     line-height: 1.2;
 }
 .tarif-ozet-yazi{
-    max-width: 640px;
-    margin: 12px 0 20px;
+    max-width: 680px;
+    margin: 12px 0 24px;
     font-size: 17px;
     line-height: 1.7;
 }
+/* Süre · adım · boyut: ince çizginin altında, aralarında ayırıcı çizgilerle tek sıra */
 .tarif-bilgiler{
     list-style: none;
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    row-gap: 8px;
+    padding-top: 20px;
+    border-top: 1px solid #efe5d4;
 }
 .tarif-bilgiler li{
-    padding: 8px 16px;
-    border-radius: 999px;
-    background-color: var(--renk-beyaz);
-    box-shadow: var(--golge);
+    padding: 0 20px;
+    border-left: 1px solid #e2d5c0;
     font-size: 14px;
     font-weight: 500;
+}
+.tarif-bilgiler li:first-child{
+    padding-left: 0;
+    border-left: none;
 }
 .tarif-bilgiler i{
     color: var(--renk-altın-koyu);
@@ -1216,9 +1241,6 @@ button:focus-visible,
         grid-template-columns: 1fr;
         gap: 32px;
     }
-    .benzer-urunler .urun-grid{
-        grid-template-columns: repeat(2, 1fr);
-    }
     .tarif-yan{
         position: static;
     }
@@ -1257,16 +1279,30 @@ button:focus-visible,
         grid-template-columns: 96px 1fr;
         font-size: 14px;
     }
-    .tarif-baslik{
-        flex-direction: column;
-        gap: 16px;
-        padding: 20px 16px 40px;
+    /* Diğer ürünler: yana kaydırılan tek sıra (alt satırda tek kart kalmasın) */
+    .benzer-urunler .urun-grid{
+        display: flex;
+        gap: 12px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 12px;
     }
-    .tarif-baslik-ikon{
-        width: 64px;
-        height: 64px;
-        border-radius: 18px;
-        font-size: 26px;
+    .benzer-urunler .urun-kart{
+        flex: 0 0 62%;
+        scroll-snap-align: start;
+    }
+    .benzer-alt{
+        margin-top: 24px;
+    }
+    .tarif-baslik{
+        padding: 20px 16px 32px;
+    }
+    .tarif-baslik-kart{
+        padding: 24px 20px;
+    }
+    .tarif-bilgiler li{
+        padding: 0 12px;
+        font-size: 13px;
     }
     .tarif-ozet-yazi{
         font-size: 15px;
