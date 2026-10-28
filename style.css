@@ -1455,22 +1455,16 @@ button:focus-visible,
 .sosyal-btn i{
     font-size: 18px;
 }
-/* Sitenin paletiyle: WhatsApp koyu kahve dolgulu, krem yazı */
-.sosyal-btn.whatsapp{
+/* WhatsApp ve Instagram: ikisi de koyu kahve dolgulu, krem yazı ve ikon */
+.sosyal-btn.whatsapp,
+.sosyal-btn.instagram{
     background-color: var(--renk-kahve-koyu);
     color: var(--renk-krem);
 }
-/* Instagram altın dolgulu, koyu kahve yazı ve ikon (okunurluk iyi) */
-.sosyal-btn.instagram{
-    background-color: var(--renk-altın);
-    color: var(--renk-kahve-koyu);
-}
-/* Üstüne gelince hafif koyulaşsın (yükselme aşağıdaki hover kuralında) */
-.sosyal-btn.whatsapp:hover{
-    background-color: #2A1D11;
-}
+/* Üstüne gelince açık kahveye dönsün (yükselme aşağıdaki hover kuralında) */
+.sosyal-btn.whatsapp:hover,
 .sosyal-btn.instagram:hover{
-    background-color: #B5822F;
+    background-color: var(--renk-kahve-açık);
 }
 .ornek-not{
     margin-top: 12px;
