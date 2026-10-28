@@ -1441,24 +1441,45 @@ button:focus-visible,
     align-items: center;
     gap: 8px;
     padding: 12px 22px;
-    border: none;
+    /* İki düğmede de aynı kalınlıkta çerçeve: boyları eşit kalsın */
+    border: 1.5px solid transparent;
     border-radius: 999px;
-    color: #ffffff;
     font-family: var(--font-metin);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 .sosyal-btn i{
     font-size: 18px;
 }
-/* Beyaz yazı okunsun diye markaların biraz koyu tonları */
+/* Sitenin paletiyle: WhatsApp koyu kahve dolgulu */
 .sosyal-btn.whatsapp{
-    background-color: #1E7E45;
+    background-color: var(--renk-kahve-koyu);
+    border-color: var(--renk-kahve-koyu);
+    color: var(--renk-krem);
 }
+.sosyal-btn.whatsapp:hover{
+    background-color: var(--renk-kahve-açık);
+    border-color: var(--renk-kahve-açık);
+}
+/* Instagram altın çerçeveli, içi boş; yazı koyu kahve (altın yazı beyazda okunmaz) */
 .sosyal-btn.instagram{
-    background-color: #B3307A;
+    background-color: transparent;
+    border-color: var(--renk-altın);
+    color: var(--renk-kahve-koyu);
+}
+.sosyal-btn.instagram i{
+    color: var(--renk-altın);
+    transition: color 0.3s ease;
+}
+.sosyal-btn.instagram:hover{
+    background-color: var(--renk-kahve-koyu);
+    border-color: var(--renk-kahve-koyu);
+    color: var(--renk-krem);
+}
+.sosyal-btn.instagram:hover i{
+    color: var(--renk-krem);
 }
 .ornek-not{
     margin-top: 12px;
