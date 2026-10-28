@@ -62,6 +62,11 @@ a{
 .navbar a:hover{
     color: var(--renk-altın);
 }
+/* Menü linklerinin kutusu: bilgisayarda yokmuş gibi davranır (linkler menüye eşit dağılır),
+   telefonda yana kaydırılabilen tek satır olur */
+.menu-linkleri{
+    display: contents;
+}
 .navbar .marka{
     font-family: var(--font-baslik);
     font-size: 26px;
@@ -673,10 +678,26 @@ button:focus-visible,
         letter-spacing: 0.02em;
         white-space: nowrap;
     }
-    /* Dokunma alanı büyüsün ama menünün yüksekliği değişmesin */
-    .navbar a:not(.marka){
-        padding: 10px 4px;
+    /* Linkler tek satırda; sığmazsa satır yana kaydırılır (menü yüksekliği değişmez) */
+    .menu-linkleri{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 10px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        /* Dokunma alanı büyüsün ama menünün yüksekliği değişmesin */
         margin: -10px 0;
+    }
+    .menu-linkleri::-webkit-scrollbar{
+        display: none;
+    }
+    .menu-linkleri a{
+        padding: 10px 2px;
+    }
+    /* Kaydırılan satırın içinde odak çerçevesi kesilmesin */
+    .menu-linkleri a:focus-visible{
+        outline-offset: -2px;
     }
     /* Arama: normalde sadece ikon, dokununca genişler */
     .yanyana{
@@ -1325,5 +1346,210 @@ button:focus-visible,
     }
     .alt-sayfa .hakkimizda{
         padding-top: 24px;
+    }
+}
+
+/* ===== İletişim sayfası (iletisim.html) ===== */
+.iletisim-baslik{
+    padding: 32px var(--yan-bosluk) 8px;
+}
+.iletisim-baslik h1{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.iletisim-baslik > p:last-child{
+    max-width: 640px;
+    margin-top: 12px;
+    font-size: 17px;
+    line-height: 1.7;
+}
+.iletisim-govde{
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 32px;
+    align-items: start;
+    padding: 24px var(--yan-bosluk) 88px;
+}
+.iletisim-kart{
+    background-color: var(--renk-beyaz);
+    border-radius: var(--kose);
+    box-shadow: var(--golge);
+    padding: 32px;
+}
+.iletisim-kart h2{
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+.ornek-etiket{
+    font-family: var(--font-metin);
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--renk-kahve-açık);
+}
+.iletisim-liste{
+    list-style: none;
+}
+.iletisim-liste li{
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 14px;
+    align-items: start;
+    padding: 12px 0;
+    border-bottom: 1px solid #efe5d4;
+    font-size: 15px;
+}
+.iletisim-liste li > i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--renk-bej);
+    color: var(--renk-altın);
+}
+.iletisim-etiket{
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--renk-kahve-açık);
+    margin-bottom: 2px;
+}
+.calisma-saatleri div{
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 260px;
+}
+.calisma-saatleri dt{
+    font-weight: 500;
+}
+/* WhatsApp / Instagram düğmeleri (örnek, hiçbir yere gitmez) */
+.sosyal-butonlar{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+}
+.sosyal-btn{
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 999px;
+    color: #ffffff;
+    font-family: var(--font-metin);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.sosyal-btn i{
+    font-size: 18px;
+}
+/* Beyaz yazı okunsun diye markaların biraz koyu tonları */
+.sosyal-btn.whatsapp{
+    background-color: #1E7E45;
+}
+.sosyal-btn.instagram{
+    background-color: #B3307A;
+}
+.ornek-not{
+    margin-top: 12px;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--renk-kahve-açık);
+}
+/* Form */
+.form-alan{
+    margin-bottom: 18px;
+}
+.form-alan label{
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.form-alan input,
+.form-alan textarea{
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e2d5c0;
+    border-radius: 10px;
+    background-color: var(--renk-krem);
+    color: var(--renk-kahve-koyu);
+    font-family: var(--font-metin);
+    font-size: 15px;
+    transition: border-color 0.3s ease;
+}
+.form-alan textarea{
+    min-height: 140px;
+    resize: vertical;
+}
+.form-alan input:focus,
+.form-alan textarea:focus{
+    border-color: var(--renk-altın);
+}
+.form-alan input:focus-visible,
+.form-alan textarea:focus-visible{
+    outline: 2px solid var(--renk-altın);
+    outline-offset: 2px;
+}
+.iletisim-form .buttons{
+    margin-top: 4px;
+}
+.form-sonuc{
+    margin-top: 18px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border-left: 4px solid var(--renk-altın);
+    background-color: var(--renk-bej);
+    font-size: 15px;
+}
+.form-sonuc i{
+    color: var(--renk-altın);
+    margin-right: 6px;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference){
+    .sosyal-btn:hover{
+        transform: translateY(-2px);
+        box-shadow: var(--golge-hover);
+    }
+}
+
+/* İletişim: tablet */
+@media (max-width: 900px){
+    .iletisim-govde{
+        grid-template-columns: 1fr;
+    }
+}
+
+/* İletişim: telefon */
+@media (max-width: 600px){
+    .iletisim-baslik{
+        padding: 20px 16px 4px;
+    }
+    .iletisim-baslik h1{
+        font-size: 28px;
+    }
+    .iletisim-baslik > p:last-child{
+        font-size: 15px;
+    }
+    .iletisim-govde{
+        gap: 20px;
+        padding: 20px 16px 56px;
+    }
+    .iletisim-kart{
+        padding: 24px 20px;
+    }
+    .sosyal-btn{
+        flex: 1 1 auto;
+        justify-content: center;
     }
 }
