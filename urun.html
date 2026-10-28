@@ -36,34 +36,45 @@
         <span aria-hidden="true">/</span>
         <a href="index.html#urunler">Ürünler</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">İkili Amigurumi Anahtarlık</span>
+        <span aria-current="page" id="yol-ad">Ürün</span>
     </nav>
 
-    <section class="urun-detay">
-        <div class="urun-detay-resim">
-            <img src="images/ikili-anahtarlik.jpg" alt="Elde tutulan iki amigurumi anahtarlık: gri kedi ve beyaz ördek" width="646" height="720">
-        </div>
+    <!-- Ürün bilgileri data.js'ten doldurulur (adres: urun.html?urun=<id>) -->
+    <section class="urun-detay" id="urun-detay" hidden>
+        <div class="urun-detay-resim" id="urun-resim"></div>
 
         <div class="urun-detay-bilgi">
-            <p class="ust-yazi">Anahtarlık</p>
-            <h1>İkili Amigurumi Anahtarlık</h1>
-            <p class="urun-fiyat">₺180</p>
-            <p class="urun-aciklama">Gri kedi ve beyaz ördekten oluşan bu ikili, çantanıza ya da anahtarınıza küçük bir neşe katar. Her biri pamuk iplikle, tek tek elde örülür; ikisi de paylaşılmak için yapıldı: biri size, biri sevdiğinize.</p>
-
-            <dl class="urun-ozellikler">
-                <div><dt>Malzeme</dt><dd>%100 pamuk amigurumi ipliği</dd></div>
-                <div><dt>Boyut</dt><dd>Her biri yaklaşık 8 cm</dd></div>
-                <div><dt>Dolgu</dt><dd>Antialerjik elyaf</dd></div>
-                <div><dt>Gözler</dt><dd>Güvenlikli plastik göz</dd></div>
-                <div><dt>Bakım</dt><dd>Elde, soğuk suyla yıkayın; sıkmadan kurutun</dd></div>
-            </dl>
+            <p class="ust-yazi" id="urun-kategori"></p>
+            <h1 id="urun-ad"></h1>
+            <p class="urun-fiyat" id="urun-fiyat"></p>
+            <p class="urun-aciklama" id="urun-aciklama"></p>
+            <dl class="urun-ozellikler" id="urun-ozellikler"></dl>
 
             <p class="urun-not"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Bu bir tasarım örneğidir, satış yapılmamaktadır.</p>
             <a href="index.html#urunler" class="buttons">Tüm Ürünlere Dön</a>
         </div>
     </section>
 
-    <section class="ana-kapsayici2 benzer-urunler">
+    <!-- Ürün bulunamazsa (yanlış adres, eksik veri) -->
+    <section class="bulunamadi" id="bulunamadi" hidden>
+        <div class="bulunamadi-kart">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <h1>Ürün bulunamadı</h1>
+            <p>Aradığınız ürün kaldırılmış ya da adres yanlış olabilir.</p>
+            <a href="index.html#urunler" class="buttons">Tüm Ürünleri Gör</a>
+        </div>
+    </section>
+
+    <noscript>
+        <section class="bulunamadi">
+            <div class="bulunamadi-kart">
+                <p>Bu içeriği görmek için tarayıcınızda JavaScript'i açın.</p>
+                <a href="index.html" class="buttons">Ana Sayfaya Dön</a>
+            </div>
+        </section>
+    </noscript>
+
+    <section class="ana-kapsayici2 benzer-urunler" id="diger-urunler" hidden>
       <div class="bolum-baslik">
         <div>
           <p>Koleksiyondan</p>
@@ -71,37 +82,7 @@
         </div>
       </div>
 
-      <div class="urun-grid">
-        <div class="urun-kart">
-          <div class="suanlik-resim"><img src="images/kucuk-kiz.jpg" alt="Küçük Kız Bebek" width="681" height="1311" loading="lazy" decoding="async"></div>
-          <div class="metin">
-          <p>Amigurumi Bebek</p>
-          <h3>Küçük Kız Bebek</h3></div>
-          <div class="yanyana2">
-            <span>₺320</span>
-          </div>
-        </div>
-
-        <div class="urun-kart">
-          <div class="suanlik-resim"><img src="images/ikiz-kardesler.jpg" alt="İkiz Kardeşler Seti" width="709" height="1269" loading="lazy" decoding="async"></div>
-          <div class="metin">
-          <p>Amigurumi Bebek</p>
-          <h3>İkiz Kardeşler Seti</h3></div>
-          <div class="yanyana2">
-            <span>₺550</span>
-          </div>
-        </div>
-
-        <div class="urun-kart">
-          <div class="suanlik-resim"><img src="images/orgu-sacli-kiz.jpg" alt="Örgü Saçlı Kız" width="657" height="945" loading="lazy" decoding="async"></div>
-          <div class="metin">
-          <p>Amigurumi Bebek</p>
-          <h3>Örgü Saçlı Kız</h3></div>
-          <div class="yanyana2">
-            <span>₺350</span>
-          </div>
-        </div>
-      </div>
+      <div class="urun-grid" id="diger-listesi"></div>
 
       <div class="benzer-alt">
         <a href="index.html#urunler" class="ikincil-btn">Tüm Ürünleri Gör</a>
@@ -140,7 +121,51 @@
         <p>Bu site bir tasarım örneğidir, satış yapılmamaktadır.</p>
     </div>
    </footer>
+  <script src="data.js"></script>
   <script>
+
+// 0. Ürünü bul ve sayfayı doldur
+const adresId = new URLSearchParams(window.location.search).get("urun")
+// data.js yüklenemediyse de sayfa hata vermesin, "bulunamadı" göstersin
+const urun = (typeof URUNLER !== "undefined" && adresId) ? urunBul(adresId) : undefined
+
+if (urun) {
+    document.title = urun.ad + " | StilCrochet"
+    document.querySelector('meta[name="description"]').content = urun.aciklama
+
+    document.getElementById("yol-ad").textContent = urun.ad
+    document.getElementById("urun-kategori").textContent = urun.kategori
+    document.getElementById("urun-ad").textContent = urun.ad
+    document.getElementById("urun-fiyat").textContent = fiyatYaz(urun.fiyat)
+    document.getElementById("urun-aciklama").textContent = urun.aciklama
+
+    const resim = el("img")
+    resim.src = urun.resim.dosya
+    resim.alt = urun.resim.aciklama
+    resim.width = urun.resim.genislik
+    resim.height = urun.resim.yukseklik
+    document.getElementById("urun-resim").append(resim)
+
+    const ozellikler = document.getElementById("urun-ozellikler")
+    urun.ozellikler.forEach(([baslik, deger]) => {
+        const satir = el("div")
+        satir.append(el("dt", "", baslik), el("dd", "", deger))
+        ozellikler.append(satir)
+    })
+    document.getElementById("urun-detay").hidden = false
+
+    // Diğer ürünler: bu ürün dışındakilerden en fazla 3 tane
+    const digerleri = URUNLER.filter((digeri) => digeri.id !== urun.id).slice(0, 3)
+    if (digerleri.length > 0) {
+        const liste = document.getElementById("diger-listesi")
+        digerleri.forEach((digeri) => liste.append(urunKartiOlustur(digeri)))
+        document.getElementById("diger-urunler").hidden = false
+    }
+} else {
+    document.title = "Ürün bulunamadı | StilCrochet"
+    document.getElementById("yol-ad").textContent = "Ürün bulunamadı"
+    document.getElementById("bulunamadi").hidden = false
+}
 
 // 1. Arama — bu sayfada Enter'a basınca ana sayfada aransın
 const aramaKutusu = document.getElementById("arama")

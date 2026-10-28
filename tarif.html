@@ -36,80 +36,62 @@
         <span aria-hidden="true">/</span>
         <a href="index.html#tarifler">Örgü Tarifleri</a>
         <span aria-hidden="true">/</span>
-        <span aria-current="page">Mini Kaktüs Amigurumi</span>
+        <span aria-current="page" id="yol-ad">Tarif</span>
     </nav>
 
-    <section class="tarif-baslik">
+    <!-- Tarif bilgileri data.js'ten doldurulur (adres: tarif.html?tarif=<id>) -->
+    <section class="tarif-baslik" id="tarif-baslik" hidden>
         <div class="tarif-baslik-kart">
-            <p class="seviye seviye-baslangic">BAŞLANGIÇ</p>
-            <h1>Mini Kaktüs Amigurumi</h1>
-            <p class="tarif-ozet-yazi">Örgüye yeni başlayanlar için ilk amigurumi: küçük bir saksıda, tepesinde pembe çiçeğiyle sevimli bir kaktüs. Sadece temel ilmekleri bilmeniz yeterli.</p>
+            <p class="seviye" id="tarif-seviye"></p>
+            <h1 id="tarif-ad"></h1>
+            <p class="tarif-ozet-yazi" id="tarif-ozet"></p>
             <ul class="tarif-bilgiler">
-                <li><i class="fa-regular fa-clock" aria-hidden="true"></i> 45 dk</li>
-                <li><i class="fa-solid fa-list-ol" aria-hidden="true"></i> 12 adım</li>
-                <li><i class="fa-solid fa-ruler" aria-hidden="true"></i> Yaklaşık 10 cm</li>
+                <li><i class="fa-regular fa-clock" aria-hidden="true"></i> <span id="tarif-sure"></span></li>
+                <li><i class="fa-solid fa-list-ol" aria-hidden="true"></i> <span id="tarif-adim-sayisi"></span></li>
+                <li><i class="fa-solid fa-ruler" aria-hidden="true"></i> <span id="tarif-boyut"></span></li>
             </ul>
         </div>
     </section>
 
-    <section class="tarif-govde">
+    <section class="tarif-govde" id="tarif-govde" hidden>
         <aside class="tarif-yan">
             <div class="tarif-kutu">
                 <h2>Malzemeler</h2>
-                <ul>
-                    <li>Yeşil pamuk ip (yaklaşık 20 g)</li>
-                    <li>Kahverengi ya da kiremit rengi pamuk ip (saksı, yaklaşık 15 g)</li>
-                    <li>Pembe ip (çiçek, çok az)</li>
-                    <li>2,5 mm tığ</li>
-                    <li>Elyaf (dolgu için)</li>
-                    <li>6 mm güvenlikli göz (isteğe bağlı)</li>
-                    <li>Yün iğnesi, makas, ilmek işaretleyici</li>
-                </ul>
+                <ul id="tarif-malzemeler"></ul>
             </div>
             <div class="tarif-kutu">
                 <h2>Kısaltmalar</h2>
-                <dl>
-                    <div><dt>SH</dt><dd>Sihirli halka</dd></div>
-                    <div><dt>s</dt><dd>Sık iğne</dd></div>
-                    <div><dt>art</dt><dd>Arttırma (aynı ilmeğe 2 sık iğne)</dd></div>
-                    <div><dt>zn</dt><dd>Zincir</dd></div>
-                    <div><dt>kİ</dt><dd>Kaydırma iğnesi</dd></div>
-                    <div><dt>( )</dt><dd>Turun sonundaki ilmek sayısı</dd></div>
-                </dl>
+                <dl id="tarif-kisaltmalar"></dl>
             </div>
         </aside>
 
         <div class="tarif-adimlar-kap">
             <h2>Yapılışı</h2>
-
-            <h3>Kaktüs (yeşil ip)</h3>
-            <ol class="tarif-adimlar">
-                <li>SH içine 6 s örün. (6)</li>
-                <li>Her ilmeğe art yapın. (12)</li>
-                <li>*1 s, art* tekrarını 6 kez örün. (18)</li>
-                <li>4. turdan 10. tura kadar her ilmeğe 1 s örün. Sadece arka ilmekten örerseniz kaktüse çizgili bir doku verirsiniz. (18)</li>
-                <li>Göz takacaksanız 7. ve 8. turlar arasına, 6 ilmek arayla yerleştirin. Gövdeyi elyafla sıkıca doldurun.</li>
-            </ol>
-
-            <h3>Saksı (kahverengi ip)</h3>
-            <ol class="tarif-adimlar" start="6">
-                <li>SH içine 6 s örün. (6)</li>
-                <li>Her ilmeğe art (12), sonra *1 s, art* (18), sonra *2 s, art* (24) turlarını örün.</li>
-                <li>Sadece arka ilmekten 1 tur s örün; saksının tabanı belirginleşir. (24)</li>
-                <li>4 tur boyunca her ilmeğe 1 s örün. (24)</li>
-                <li>Saksı kenarı için sadece ön ilmekten 1 tur s, ardından 1 tur normal s örün ve kİ ile bitirin.</li>
-            </ol>
-
-            <h3>Birleştirme ve çiçek</h3>
-            <ol class="tarif-adimlar" start="11">
-                <li>Saksıyı biraz elyafla doldurun, kaktüsü içine yerleştirip kenarından dikin.</li>
-                <li>Pembe iple SH içine 5 kez *2 zn, 1 kİ* örerek çiçeği yapın, kaktüsün tepesine dikin ve ip uçlarını gizleyin.</li>
-            </ol>
+            <div id="tarif-bolumleri"></div>
 
             <p class="urun-not"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Bu bir örnek tariftir; ölçüler ve tur sayıları tasarım amaçlıdır.</p>
             <a href="index.html#tarifler" class="buttons">Tüm Tariflere Dön</a>
         </div>
     </section>
+
+    <!-- Tarif bulunamazsa (yanlış adres, eksik veri) -->
+    <section class="bulunamadi" id="bulunamadi" hidden>
+        <div class="bulunamadi-kart">
+            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+            <h1>Tarif bulunamadı</h1>
+            <p>Aradığınız tarif kaldırılmış ya da adres yanlış olabilir.</p>
+            <a href="index.html#tarifler" class="buttons">Tüm Tarifleri Gör</a>
+        </div>
+    </section>
+
+    <noscript>
+        <section class="bulunamadi">
+            <div class="bulunamadi-kart">
+                <p>Bu içeriği görmek için tarayıcınızda JavaScript'i açın.</p>
+                <a href="index.html" class="buttons">Ana Sayfaya Dön</a>
+            </div>
+        </section>
+    </noscript>
    </main>
 
    <footer class="altbilgi">
@@ -143,7 +125,56 @@
         <p>Bu site bir tasarım örneğidir, satış yapılmamaktadır.</p>
     </div>
    </footer>
+  <script src="data.js"></script>
   <script>
+
+// 0. Tarifi bul ve sayfayı doldur
+const adresId = new URLSearchParams(window.location.search).get("tarif")
+// data.js yüklenemediyse de sayfa hata vermesin, "bulunamadı" göstersin
+const tarif = (typeof TARIFLER !== "undefined" && adresId) ? tarifBul(adresId) : undefined
+
+if (tarif) {
+    document.title = tarif.ad + " Tarifi | StilCrochet"
+    document.querySelector('meta[name="description"]').content = tarif.ozet
+
+    document.getElementById("yol-ad").textContent = tarif.ad
+    const seviye = document.getElementById("tarif-seviye")
+    seviye.textContent = SEVIYELER[tarif.seviye]
+    seviye.classList.add("seviye-" + tarif.seviye)
+    document.getElementById("tarif-ad").textContent = tarif.ad
+    document.getElementById("tarif-ozet").textContent = tarif.ozet
+    document.getElementById("tarif-sure").textContent = tarif.sure
+    document.getElementById("tarif-adim-sayisi").textContent = adimSayisi(tarif) + " adım"
+    document.getElementById("tarif-boyut").textContent = tarif.boyut
+
+    const malzemeler = document.getElementById("tarif-malzemeler")
+    tarif.malzemeler.forEach((malzeme) => malzemeler.append(el("li", "", malzeme)))
+
+    const kisaltmalar = document.getElementById("tarif-kisaltmalar")
+    tarif.kisaltmalar.forEach(([kisa, anlam]) => {
+        const satir = el("div")
+        satir.append(el("dt", "", kisa), el("dd", "", anlam))
+        kisaltmalar.append(satir)
+    })
+
+    // Her bölüm: başlık + numaralı adımlar; numaralar bölümden bölüme devam eder
+    const bolumler = document.getElementById("tarif-bolumleri")
+    let siradakiNumara = 1
+    tarif.bolumler.forEach((bolum) => {
+        const liste = el("ol", "tarif-adimlar")
+        liste.start = siradakiNumara
+        bolum.adimlar.forEach((adim) => liste.append(el("li", "", adim)))
+        siradakiNumara += bolum.adimlar.length
+        bolumler.append(el("h3", "", bolum.baslik), liste)
+    })
+
+    document.getElementById("tarif-baslik").hidden = false
+    document.getElementById("tarif-govde").hidden = false
+} else {
+    document.title = "Tarif bulunamadı | StilCrochet"
+    document.getElementById("yol-ad").textContent = "Tarif bulunamadı"
+    document.getElementById("bulunamadi").hidden = false
+}
 
 // Arama — bu sayfada Enter'a basınca ana sayfada aransın
 const aramaKutusu = document.getElementById("arama")

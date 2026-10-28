@@ -87,52 +87,9 @@
   </div>
 
 
-  <div class="urun-grid">     
-         
-    <div class="urun-kart">
-      <div class="suanlik-resim"><img src="images/ikili-anahtarlik.jpg" alt="İkili Amigurumi Anahtarlık" width="646" height="720" loading="lazy" decoding="async"></div>
-      <div class="metin">
-      <p>Anahtarlık</p>
-      <h3>İkili Amigurumi Anahtarlık</h3></div>
-      <div class="yanyana2">
-        <span>₺180</span>
-        <a href="urun.html" class="kalan-btn" aria-label="İkili Amigurumi Anahtarlık ürününü incele">İncele</a>
-    </div>
-    </div>
-    <div class="urun-kart ">
-      <div class="suanlik-resim"><img src="images/kucuk-kiz.jpg" alt="Küçük Kız Bebek" width="681" height="1311" loading="lazy" decoding="async"></div>
-      <div class="metin">
-      <p>Amigurumi Bebek</p>
-      <h3>Küçük Kız Bebek</h3></div>
-      <div class="yanyana2">
-        <span>₺320</span>
-        <a href="urun.html" class="kalan-btn" aria-label="Küçük Kız Bebek ürününü incele">İncele</a>
-    </div>
-    </div>
-
-    <div class="urun-kart ">
-      <div class="suanlik-resim"><img src="images/ikiz-kardesler.jpg" alt="İkiz Kardeşler Seti" width="709" height="1269" loading="lazy" decoding="async"></div>
-      <div class="metin">
-      <p>Amigurumi Bebek</p>
-      <h3>İkiz Kardeşler Seti</h3></div>
-      <div class="yanyana2">
-        <span>₺550</span>
-        <a href="urun.html" class="kalan-btn" aria-label="İkiz Kardeşler Seti ürününü incele">İncele</a>
-    </div>
-    </div>
-
-    <div class="urun-kart ">
-      <div class="suanlik-resim"><img src="images/orgu-sacli-kiz.jpg" alt="Örgü Saçlı Kız" width="657" height="945" loading="lazy" decoding="async"></div>
-      <div class="metin">
-      <p>Amigurumi Bebek</p>
-      <h3>Örgü Saçlı Kız</h3></div>
-      <div class="yanyana2">
-        <span>₺350</span>
-        <a href="urun.html" class="kalan-btn" aria-label="Örgü Saçlı Kız ürününü incele">İncele</a>
-    </div>
-    </div>
-
-  </div>
+  <!-- Ürün kartları data.js'ten oluşturulur (yeni ürün: data.js'teki URUNLER listesine kayıt ekleyin) -->
+  <div class="urun-grid" id="urun-listesi"></div>
+  <noscript><p class="sonuc-yok">Ürünleri görmek için tarayıcınızda JavaScript'i açın.</p></noscript>
   <p class="sonuc-yok" role="status" hidden>Aramanıza uygun ürün bulunamadı.</p>
 </section>
     
@@ -143,33 +100,9 @@
     <h2>Örgü Tarifleri</h2> </div>
     </div>
 
-    <div class="tarif-grid">
-        <div class="urun-card2">
-            <div class="ikon-icin"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
-
-            <div class="metin"> <p class="seviye seviye-baslangic">BAŞLANGIÇ</p>
-                <h3><a href="tarif.html" class="kart-linki">Mini Kaktüs Amigurumi</a></h3>
-                <span>45 dk · 12 adım</span>
-            </div>
-        </div>
-        <div class="urun-card2">
-            <div class="ikon-icin"><i class="fa-solid fa-fire" aria-hidden="true"></i></div>
-
-            <div class="metin"> <p class="seviye seviye-orta">ORTA</p>
-                <h3><a href="tarif.html" class="kart-linki">Sevimli Ayıcık Amigurumi</a></h3>
-                <span>2 saat · 20 adım</span>
-            </div>
-        </div>
-        <div class="urun-card2">
-            <div class="ikon-icin"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
-
-            <div class="metin"><p class="seviye seviye-ileri">İLERİ</p>
-                <h3><a href="tarif.html" class="kart-linki">Uzun Bacaklı Tavşan Amigurumi</a></h3>
-                <span>4 saat · 32 adım</span>
-            </div>
-        </div>
-
-    </div>
+    <!-- Tarif kartları data.js'ten oluşturulur (yeni tarif: data.js'teki TARIFLER listesine kayıt ekleyin) -->
+    <div class="tarif-grid" id="tarif-listesi"></div>
+    <noscript><p class="sonuc-yok">Tarifleri görmek için tarayıcınızda JavaScript'i açın.</p></noscript>
     <p class="sonuc-yok" role="status" hidden>Aramanıza uygun tarif bulunamadı.</p>
 
    </section>
@@ -207,7 +140,26 @@
         <p>Bu site bir tasarım örneğidir, satış yapılmamaktadır.</p>
     </div>
    </footer>
+  <script src="data.js"></script>
   <script>
+
+// Kartları data.js'ten oluştur (arama ve animasyon kodları bu kartları kullanır, o yüzden en başta)
+if (typeof URUNLER !== "undefined") {
+    const urunListesi = document.getElementById("urun-listesi")
+    URUNLER.forEach((urun) => urunListesi.append(urunKartiOlustur(urun)))
+    const tarifListesi = document.getElementById("tarif-listesi")
+    TARIFLER.forEach((tarif) => tarifListesi.append(tarifKartiOlustur(tarif)))
+} else {
+    // data.js yüklenemediyse sayfa hata vermesin, kısa bir not göstersin
+    document.getElementById("urun-listesi").after(yuklenemediNotu("Ürünler şu anda yüklenemedi."))
+    document.getElementById("tarif-listesi").after(yuklenemediNotu("Tarifler şu anda yüklenemedi."))
+}
+function yuklenemediNotu(yazi) {
+    const not = document.createElement("p")
+    not.className = "sonuc-yok"
+    not.textContent = yazi
+    return not
+}
 
 // 0. "Hareketi azalt" ayarı açıksa ya da tarayıcı desteklemiyorsa hiçbir şey gizlenmez
 const hareketiAzalt = window.matchMedia("(prefers-reduced-motion: reduce)").matches
