@@ -148,24 +148,10 @@ a{
     cursor: pointer;
     background-color: var(--renk-kahve-koyu);
 }
-.tum-btn{
-    background-color: transparent;
-    color: var(--renk-kahve-açık);
-    border: 1.5px solid var(--renk-kahve-açık);
-    border-radius: 999px;
-    padding: 10px 24px;
-    font-family: var(--font-metin);
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.tum-btn:hover{
-    background-color: var(--renk-kahve-açık);
-    color: var(--renk-krem);
-}
+/* "İncele" linki (ürün kartları) */
 .kalan-btn{
+    display: inline-block;
+    text-align: center;
     padding: 9px 18px;
     background-color: var(--renk-kahve-açık);
     color: var(--renk-krem);
@@ -447,15 +433,139 @@ section{
     }
 }
 
+/* Arama sonucu yoksa */
+[hidden]{
+    display: none !important;
+}
+.sonuc-yok{
+    text-align: center;
+    padding: 24px 0 0;
+    font-style: italic;
+    color: var(--renk-kahve-açık);
+}
+
+/* Hakkımızda */
+.hakkimizda{
+    background-color: var(--renk-bej);
+    padding: 88px var(--yan-bosluk);
+}
+.hakkimizda-ic{
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+.ust-yazi{
+    color: var(--renk-altın-koyu);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.hakkimizda-metin h2{
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.hakkimizda-metin h2::after{
+    content: "";
+    display: block;
+    width: 48px;
+    height: 2px;
+    background-color: var(--renk-altın);
+    margin-top: 14px;
+}
+.hakkimizda-metin p{
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+.hakkimizda-metin .ust-yazi{
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+.hakkimizda-metin .hakkimizda-not{
+    font-size: 13px;
+    font-style: italic;
+    color: var(--renk-kahve-açık);
+}
+/* Hero görselinden baykuş ve tilkinin olduğu kısım (yeni resim dosyası gerekmez) */
+.hakkimizda-gorsel{
+    aspect-ratio: 4 / 3;
+    border-radius: var(--kose);
+    background-image: url(images/hero.webp);
+    background-size: auto 160%;
+    background-position: 80% 45%;
+    box-shadow: var(--golge);
+}
+
 /* Footer */
 .altbilgi{
     background-color: var(--renk-kahve-koyu);
     border-top: 2px solid var(--renk-altın);
     color: rgba(250, 240, 224, 0.8);
-    text-align: center;
-    padding: 40px 24px;
+    font-size: 14px;
+}
+.altbilgi-ic{
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 40px;
+    padding: 56px var(--yan-bosluk) 40px;
+}
+.altbilgi-logo{
+    font-family: var(--font-baslik);
+    font-size: 24px;
+    font-weight: 600;
+    color: #FAF0E0;
+}
+.altbilgi-marka p{
+    margin-top: 10px;
+    max-width: 320px;
+    line-height: 1.6;
+}
+.altbilgi-baslik{
+    font-family: var(--font-metin);
     font-size: 13px;
-    letter-spacing: 0.08em;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--renk-altın);
+    margin-bottom: 14px;
+}
+.altbilgi-baslik span{
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: rgba(250, 240, 224, 0.6);
+}
+.altbilgi ul{
+    list-style: none;
+}
+.altbilgi li{
+    margin-bottom: 8px;
+}
+.altbilgi li i{
+    width: 18px;
+    color: var(--renk-altın);
+}
+.altbilgi a{
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.altbilgi a:hover{
+    color: var(--renk-altın);
+}
+.altbilgi-alt{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+    padding: 20px var(--yan-bosluk);
+    border-top: 1px solid rgba(250, 240, 224, 0.15);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: rgba(250, 240, 224, 0.65);
 }
 
 /* Erişilebilirlik */
@@ -506,6 +616,40 @@ button:focus-visible,
     }
     .bolum-baslik h2{
         font-size: 32px;
+    }
+    .hakkimizda-ic{
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .altbilgi-ic{
+        grid-template-columns: 1fr 1fr;
+    }
+    .altbilgi-marka{
+        grid-column: 1 / -1;
+    }
+}
+
+/* Yan çevrilmiş telefon (geniş ama kısa ekran): menü ve hero sıkışmasın */
+@media (min-width: 601px) and (max-height: 500px){
+    .navbar{
+        height: auto;
+        min-height: 56px;
+        padding: 8px 0;
+    }
+    .arkaplan{
+        height: auto;
+        min-height: 100vh;
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+    .ana-başlık{
+        margin-top: 0;
+    }
+    .ikinci-başlık{
+        font-size: 40px;
+    }
+    section{
+        scroll-margin-top: 64px;
     }
 }
 
@@ -666,10 +810,6 @@ button:focus-visible,
     .bolum-baslik h2::after{
         margin-top: 10px;
     }
-    .tum-btn{
-        font-size: 13px;
-        padding: 8px 18px;
-    }
 
     .ana-kapsayici1,
     .ana-kapsayici2,
@@ -750,9 +890,26 @@ button:focus-visible,
     .urun-card2{
         padding: 16px;
     }
+    .hakkimizda{
+        padding: 56px 16px;
+    }
+    .hakkimizda-metin h2{
+        font-size: 26px;
+    }
+    .hakkimizda-metin p{
+        font-size: 15px;
+    }
     .altbilgi{
-        padding: 32px 16px;
-        font-size: 12px;
+        font-size: 13px;
+    }
+    .altbilgi-ic{
+        grid-template-columns: 1fr;
+        gap: 28px;
+        padding: 40px 16px 28px;
+    }
+    .altbilgi-alt{
+        flex-direction: column;
+        padding: 16px;
     }
 }
 
