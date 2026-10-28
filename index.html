@@ -25,21 +25,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
-   <nav class="navbar">
-        <h2>StilCrochet</h2>
+   <a class="icerige-gec" href="#icerik">İçeriğe geç</a>
+   <nav class="navbar" aria-label="Ana menü">
+        <a href="#anasayfa" class="marka">StilCrochet</a>
         <a href="#anasayfa">Anasayfa</a>
         <a href="#tarifler">Örgü tarifler</a>
         <a href="#urunler">Ürünler</a>
         <a href="#hakkimizda">Hakkımızda</a>
         <div class="yanyana">
-        <i class="fa-solid fa-magnifying-glass"></i><input type="search" name="arama" id="arama" placeholder="arama"></div>
+        <label for="arama" class="gorunmez">Sitede ara</label>
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" name="arama" id="arama" placeholder="arama"></div>
    </nav>
-   
+
+   <main id="icerik" tabindex="-1">
     <div class="arkaplan" id="anasayfa">
-    <h3 class="ana-başlık">Amigurumi & Örgü Atölyesi</h3> <br>
-    <h1 class="ikinci-başlık">StilCrochet <br> koleksiyonu</h1> <br>
+    <p class="ana-başlık">Amigurumi & Örgü Atölyesi</p>
+    <h1 class="ikinci-başlık">StilCrochet <br> koleksiyonu</h1>
     <p class="açıklama">Tasarım harikası el emeği amigurumi ve yün ipliklerle hayallerinizi örün. <br>hemen keşfedin!</p>
-    <br>
     <a href="#urunler" class="buttons">Ürünleri İncele</a>
     </div>
     <section class="ana-kapsayici1 " id="hakkimizda">
@@ -51,23 +53,23 @@
        </div>
         <div class="div-kapsayıcı1">
             <div  >  
-                <i class="fa-regular fa-hand-pointer"></i>
-                <h2>%100 el yapımı</h2>
+                <i class="fa-regular fa-hand-pointer" aria-hidden="true"></i>
+                <h3>%100 el yapımı</h3>
                 <p>Her ürün sevgiyle örülür</p>
             </div>
             <div >
-               <i class="fa-solid fa-leaf"></i> 
-                <h2>Doğal İplikler</h2>
+               <i class="fa-solid fa-leaf" aria-hidden="true"></i>
+                <h3>Doğal İplikler</h3>
                 <p>Yumuşak pamuk ve yün iplikler</p>
             </div>
             <div >
-                <i class="fa-regular fa-truck"></i>
-                <h2>2-4 iş günü teslimat</h2>
+                <i class="fa-regular fa-truck" aria-hidden="true"></i>
+                <h3>2-4 iş günü teslimat</h3>
                 <p>Özenle paketlenip kargoya verilir</p>
             </div>
             <div >
-                <i class="fa-solid fa-rotate"></i>
-                <h2>kolay iade</h2>
+                <i class="fa-solid fa-rotate" aria-hidden="true"></i>
+                <h3>kolay iade</h3>
                 <p>14 gün iade garantisi</p>
             </div>
         </div>
@@ -141,26 +143,26 @@
 
     <div class="tarif-grid">
         <div class="urun-card2">
-            <div class="ikon-icin"><i class="fa-solid fa-star"></i></div>
-           
+            <div class="ikon-icin"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+
             <div class="metin"> <p class="seviye seviye-baslangic">BAŞLANGIÇ</p>
-                <p>Mini Kaktüs Amigurumi</p>
+                <h3>Mini Kaktüs Amigurumi</h3>
                 <span>45 dk · 12 adım</span>
             </div>
         </div>
         <div class="urun-card2">
-            <div class="ikon-icin"><i class="fa-solid fa-fire"></i></div>
-           
+            <div class="ikon-icin"><i class="fa-solid fa-fire" aria-hidden="true"></i></div>
+
             <div class="metin"> <p class="seviye seviye-orta">ORTA</p>
-                <p>Sevimli Ayıcık Amigurumi</p>
+                <h3>Sevimli Ayıcık Amigurumi</h3>
                 <span>2 saat · 20 adım</span>
             </div>
         </div>
         <div class="urun-card2">
-            <div class="ikon-icin"><i class="fa-solid fa-award"></i></div>
-            
+            <div class="ikon-icin"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+
             <div class="metin"><p class="seviye seviye-ileri">İLERİ</p>
-                <p>Uzun Bacaklı Tavşan Amigurumi</p>
+                <h3>Uzun Bacaklı Tavşan Amigurumi</h3>
                 <span>4 saat · 32 adım</span>
             </div>
         </div>
@@ -169,6 +171,7 @@
 
 
    </section>
+   </main>
 
    <footer class="altbilgi">
     <p>Bu site bir tasarım örneğidir, satış yapılmamaktadır.</p>
