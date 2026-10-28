@@ -1439,47 +1439,38 @@ button:focus-visible,
 .sosyal-btn{
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    /* İki düğme yan yana eşit genişlikte */
+    flex: 1 1 0;
     padding: 12px 22px;
-    /* İki düğmede de aynı kalınlıkta çerçeve: boyları eşit kalsın */
-    border: 1.5px solid transparent;
+    border: none;
     border-radius: 999px;
     font-family: var(--font-metin);
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 .sosyal-btn i{
     font-size: 18px;
 }
-/* Sitenin paletiyle: WhatsApp koyu kahve dolgulu */
+/* Sitenin paletiyle: WhatsApp koyu kahve dolgulu, krem yazı */
 .sosyal-btn.whatsapp{
     background-color: var(--renk-kahve-koyu);
-    border-color: var(--renk-kahve-koyu);
     color: var(--renk-krem);
 }
-.sosyal-btn.whatsapp:hover{
-    background-color: var(--renk-kahve-açık);
-    border-color: var(--renk-kahve-açık);
-}
-/* Instagram altın çerçeveli, içi boş; yazı koyu kahve (altın yazı beyazda okunmaz) */
+/* Instagram altın dolgulu, koyu kahve yazı ve ikon (okunurluk iyi) */
 .sosyal-btn.instagram{
-    background-color: transparent;
-    border-color: var(--renk-altın);
+    background-color: var(--renk-altın);
     color: var(--renk-kahve-koyu);
 }
-.sosyal-btn.instagram i{
-    color: var(--renk-altın);
-    transition: color 0.3s ease;
+/* Üstüne gelince hafif koyulaşsın (yükselme aşağıdaki hover kuralında) */
+.sosyal-btn.whatsapp:hover{
+    background-color: #2A1D11;
 }
 .sosyal-btn.instagram:hover{
-    background-color: var(--renk-kahve-koyu);
-    border-color: var(--renk-kahve-koyu);
-    color: var(--renk-krem);
-}
-.sosyal-btn.instagram:hover i{
-    color: var(--renk-krem);
+    background-color: #B5822F;
 }
 .ornek-not{
     margin-top: 12px;
@@ -1570,7 +1561,6 @@ button:focus-visible,
         padding: 24px 20px;
     }
     .sosyal-btn{
-        flex: 1 1 auto;
-        justify-content: center;
+        padding: 12px 16px;
     }
 }
