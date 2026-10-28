@@ -290,6 +290,87 @@ display: inline-block;
       transform: translateY(80px)
 }
 .goster{
-    opacity: 1; 
+    opacity: 1;
     transform: translateY(0)
+}
+
+/* Menü linkleri bölümlere yumuşak kaysın, sabit menü başlıkları örtmesin */
+html{
+    scroll-behavior: smooth;
+}
+section{
+    scroll-margin-top: 10vh;
+}
+.altbilgi{
+    background-color: #3B2A1A;
+    color: #FAF0E0;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* Tablet */
+@media (max-width: 900px){
+    .div-kapsayıcı1,
+    .urun-grid,
+    .tarif-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Telefon */
+@media (max-width: 600px){
+    .navbar{
+        height: auto;
+        flex-wrap: wrap;
+        gap: 8px 16px;
+        padding: 10px;
+    }
+    .navbar h2{
+        width: 100%;
+        text-align: center;
+    }
+    .navbar input{
+        width: 140px;
+    }
+    section{
+        scroll-margin-top: 140px;
+    }
+    .arkaplan{
+        padding-top: 140px;
+        padding-left: 6%;
+        padding-right: 6%;
+        height: auto;
+        min-height: 500px;
+    }
+    .ana-başlık{
+        font-size: 130%;
+    }
+    .ikinci-başlık{
+        font-size: 220%;
+    }
+    .açıklama{
+        font-size: 16px;
+    }
+    .div-kapsayıcı1,
+    .urun-grid,
+    .tarif-grid{
+        grid-template-columns: 1fr;
+    }
+    .div-kapsayıcı1{
+        padding: 16px 0;
+    }
+    .urun-card2{
+        margin: 10px 0;
+    }
+    .bolum-baslik{
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    .ana-kapsayici1,
+    .ana-kapsayici2,
+    .ana-kapsayici3{
+        padding: 32px 16px;
+    }
 }
