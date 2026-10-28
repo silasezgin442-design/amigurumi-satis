@@ -463,12 +463,12 @@ section{
     text-transform: uppercase;
     margin-bottom: 10px;
 }
-.hakkimizda-metin h2{
+.hakkimizda-metin h1{
     font-size: 36px;
     font-weight: 600;
     margin-bottom: 20px;
 }
-.hakkimizda-metin h2::after{
+.hakkimizda-metin h1::after{
     content: "";
     display: block;
     width: 48px;
@@ -893,7 +893,7 @@ button:focus-visible,
     .hakkimizda{
         padding: 56px 16px;
     }
-    .hakkimizda-metin h2{
+    .hakkimizda-metin h1{
         font-size: 26px;
     }
     .hakkimizda-metin p{
@@ -938,4 +938,353 @@ button:focus-visible,
     .acilis .arkaplan > a{ animation-delay: 0.6s; }
     /* Küçük başlık da bir <p>; açıklamadan önce gelsin */
     .acilis .arkaplan > .ana-başlık{ animation-delay: 0.15s; }
+}
+/* ===== Alt sayfalar (urun.html, tarif.html, hakkimizda.html) ===== */
+
+/* Sabit menünün altında başlasın */
+.alt-sayfa{
+    padding-top: 10vh;
+}
+/* Sayfa yolu: Ana Sayfa / Ürünler / ... */
+.yol{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 24px var(--yan-bosluk) 0;
+    font-size: 14px;
+    color: var(--renk-kahve-açık);
+}
+.yol a{
+    color: var(--renk-kahve-açık);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.yol a:hover{
+    color: var(--renk-altın-koyu);
+}
+.yol [aria-current]{
+    color: var(--renk-kahve-koyu);
+    font-weight: 600;
+}
+.urun-not{
+    font-size: 14px;
+    font-style: italic;
+    color: var(--renk-kahve-açık);
+    margin-bottom: 8px;
+}
+.urun-not i{
+    color: var(--renk-altın-koyu);
+    margin-right: 6px;
+}
+
+/* Ürün detayı */
+.urun-detay{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+    padding: 32px var(--yan-bosluk) 88px;
+}
+.urun-detay-resim{
+    border-radius: var(--kose);
+    overflow: hidden;
+    background-color: var(--renk-beyaz);
+    box-shadow: var(--golge);
+}
+.urun-detay-resim img{
+    display: block;
+    width: 100%;
+    height: auto;
+    /* Yakınlaştırma farenin olduğu noktadan olsun (--yakin-x/y JavaScript'ten gelir) */
+    transform-origin: var(--yakin-x, 50%) var(--yakin-y, 50%);
+    transition: transform 0.3s ease;
+}
+@media (hover: hover){
+    .urun-detay-resim{
+        cursor: zoom-in;
+    }
+    .urun-detay-resim:hover img{
+        transform: scale(1.8);
+    }
+}
+.urun-detay-bilgi h1{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+.urun-fiyat{
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--renk-kahve-açık);
+    margin-bottom: 20px;
+}
+.urun-aciklama{
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+}
+.urun-ozellikler{
+    border-top: 1px solid #e2d5c0;
+    margin-bottom: 24px;
+}
+.urun-ozellikler div{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e2d5c0;
+    font-size: 15px;
+}
+.urun-ozellikler dt{
+    font-weight: 600;
+}
+.benzer-urunler{
+    background-color: var(--renk-bej);
+}
+.benzer-urunler .urun-grid{
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* Tarif detayı */
+.tarif-baslik{
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 32px var(--yan-bosluk) 56px;
+}
+.tarif-baslik-ikon{
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 96px;
+    height: 96px;
+    border-radius: 24px;
+    background-color: var(--renk-bej);
+    color: var(--renk-altın);
+    font-size: 40px;
+}
+.tarif-baslik .seviye{
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+.tarif-baslik h1{
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.tarif-ozet-yazi{
+    max-width: 640px;
+    margin: 12px 0 20px;
+    font-size: 17px;
+    line-height: 1.7;
+}
+.tarif-bilgiler{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.tarif-bilgiler li{
+    padding: 8px 16px;
+    border-radius: 999px;
+    background-color: var(--renk-beyaz);
+    box-shadow: var(--golge);
+    font-size: 14px;
+    font-weight: 500;
+}
+.tarif-bilgiler i{
+    color: var(--renk-altın-koyu);
+    margin-right: 6px;
+}
+.tarif-govde{
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 48px;
+    align-items: start;
+    padding: 0 var(--yan-bosluk) 88px;
+}
+/* Malzemeler ve kısaltmalar kaydırırken yanda kalsın */
+.tarif-yan{
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: sticky;
+    top: calc(10vh + 24px);
+}
+.tarif-kutu{
+    background-color: var(--renk-beyaz);
+    border-radius: var(--kose);
+    padding: 24px;
+    box-shadow: var(--golge);
+}
+.tarif-kutu h2{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+.tarif-kutu ul{
+    padding-left: 18px;
+}
+.tarif-kutu li{
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+.tarif-kutu dl div{
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 8px;
+    padding: 6px 0;
+    border-bottom: 1px solid #efe5d4;
+    font-size: 15px;
+}
+.tarif-kutu dt{
+    font-weight: 600;
+    color: var(--renk-altın-koyu);
+}
+.tarif-adimlar-kap h2{
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+.tarif-adimlar-kap h3{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--renk-kahve-açık);
+    margin: 28px 0 14px;
+}
+.tarif-adimlar{
+    padding-left: 32px;
+}
+.tarif-adimlar li{
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    background-color: var(--renk-beyaz);
+    box-shadow: var(--golge);
+    line-height: 1.6;
+}
+.tarif-adimlar li::marker{
+    color: var(--renk-altın-koyu);
+    font-family: var(--font-baslik);
+    font-weight: 700;
+}
+.tarif-adimlar-kap .urun-not{
+    margin-top: 28px;
+}
+
+/* Hakkımızda sayfası */
+.alt-sayfa .hakkimizda{
+    padding-top: 40px;
+}
+
+/* Ana sayfadaki tarif kartları: kartın tamamı tarif sayfasına gitsin */
+.urun-card2{
+    position: relative;
+}
+.kart-linki{
+    color: inherit;
+    font-weight: inherit;
+}
+.kart-linki::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--kose);
+}
+.kart-linki:hover{
+    color: var(--renk-kahve-açık);
+}
+
+@media (prefers-reduced-motion: reduce){
+    .urun-detay-resim img{
+        transition: none;
+    }
+}
+
+/* Alt sayfalar: tablet */
+@media (max-width: 900px){
+    .urun-detay,
+    .tarif-govde{
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .benzer-urunler .urun-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .tarif-yan{
+        position: static;
+    }
+}
+
+/* Alt sayfalar: yan çevrilmiş telefon */
+@media (min-width: 601px) and (max-height: 500px){
+    .alt-sayfa{
+        padding-top: 56px;
+    }
+    .tarif-yan{
+        position: static;
+    }
+}
+
+/* Alt sayfalar: telefon */
+@media (max-width: 600px){
+    .alt-sayfa{
+        padding-top: 84px;
+    }
+    .yol{
+        padding: 16px 16px 0;
+        font-size: 13px;
+    }
+    .urun-detay{
+        padding: 20px 16px 56px;
+    }
+    .urun-detay-bilgi h1,
+    .tarif-baslik h1{
+        font-size: 28px;
+    }
+    .urun-fiyat{
+        font-size: 22px;
+    }
+    .urun-ozellikler div{
+        grid-template-columns: 96px 1fr;
+        font-size: 14px;
+    }
+    .tarif-baslik{
+        flex-direction: column;
+        gap: 16px;
+        padding: 20px 16px 40px;
+    }
+    .tarif-baslik-ikon{
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+        font-size: 26px;
+    }
+    .tarif-ozet-yazi{
+        font-size: 15px;
+    }
+    .tarif-govde{
+        padding: 0 16px 56px;
+    }
+    .tarif-adimlar-kap h2{
+        font-size: 26px;
+    }
+    .tarif-adimlar{
+        padding-left: 26px;
+    }
+    .tarif-adimlar li{
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+    .alt-sayfa .hakkimizda{
+        padding-top: 24px;
+    }
 }

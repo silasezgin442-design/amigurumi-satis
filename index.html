@@ -31,7 +31,7 @@
         <a href="#anasayfa">Ana Sayfa</a>
         <a href="#tarifler">Örgü Tarifleri</a>
         <a href="#urunler">Ürünler</a>
-        <a href="#hakkimizda">Hakkımızda</a>
+        <a href="hakkimizda.html">Hakkımızda</a>
         <div class="yanyana">
         <label for="arama" class="gorunmez">Sitede ara</label>
         <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" name="arama" id="arama" placeholder="arama"></div>
@@ -145,7 +145,7 @@
             <div class="ikon-icin"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
 
             <div class="metin"> <p class="seviye seviye-baslangic">BAŞLANGIÇ</p>
-                <h3>Mini Kaktüs Amigurumi</h3>
+                <h3><a href="tarif.html" class="kart-linki">Mini Kaktüs Amigurumi</a></h3>
                 <span>45 dk · 12 adım</span>
             </div>
         </div>
@@ -153,7 +153,7 @@
             <div class="ikon-icin"><i class="fa-solid fa-fire" aria-hidden="true"></i></div>
 
             <div class="metin"> <p class="seviye seviye-orta">ORTA</p>
-                <h3>Sevimli Ayıcık Amigurumi</h3>
+                <h3><a href="tarif.html" class="kart-linki">Sevimli Ayıcık Amigurumi</a></h3>
                 <span>2 saat · 20 adım</span>
             </div>
         </div>
@@ -161,7 +161,7 @@
             <div class="ikon-icin"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
 
             <div class="metin"><p class="seviye seviye-ileri">İLERİ</p>
-                <h3>Uzun Bacaklı Tavşan Amigurumi</h3>
+                <h3><a href="tarif.html" class="kart-linki">Uzun Bacaklı Tavşan Amigurumi</a></h3>
                 <span>4 saat · 32 adım</span>
             </div>
         </div>
@@ -171,18 +171,6 @@
 
    </section>
 
-   <section class="hakkimizda" id="hakkimizda">
-    <div class="hakkimizda-ic">
-        <div class="hakkimizda-metin">
-            <p class="ust-yazi">Hikâyemiz</p>
-            <h2>Hakkımızda</h2>
-            <p>StilCrochet, el örgüsüne gönül vermiş küçük bir atölyenin hayali üzerine kurulmuş bir tasarım örneğidir. Her amigurumi, ipliğin seçiminden gözlerin yerleştirilmesine kadar tek tek, sabırla elde örülür.</p>
-            <p>Amacımız hem hazır tasarımlarla sevdiklerinize küçük mutluluklar ulaştırmak hem de tariflerimizle örgüye yeni başlayanlara ilk ilmeklerinde eşlik etmek.</p>
-            <p class="hakkimizda-not">(Örnek metin)</p>
-        </div>
-        <div class="hakkimizda-gorsel" aria-hidden="true"></div>
-    </div>
-   </section>
    </main>
 
    <footer class="altbilgi">
@@ -197,7 +185,7 @@
                 <li><a href="#anasayfa">Ana Sayfa</a></li>
                 <li><a href="#urunler">Ürünler</a></li>
                 <li><a href="#tarifler">Örgü Tarifleri</a></li>
-                <li><a href="#hakkimizda">Hakkımızda</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
             </ul>
         </nav>
         <div>
@@ -337,6 +325,15 @@ aramaKutusu.addEventListener("keydown", (olay) => {
         aramaYap()
     }
 })
+
+// Başka sayfadan arama ile gelindiyse (index.html?ara=...) aramayı burada yap
+const gelenArama = new URLSearchParams(window.location.search).get("ara")
+if (gelenArama) {
+    aramaKutusu.value = gelenArama
+    aramaYap()
+    const hedef = aramaGruplari.find((grup) => [...grup.kartlar].some((kart) => !kart.hidden))
+    if (hedef) hedef.bolum.scrollIntoView()
+}
 
   </script>
 </body>
