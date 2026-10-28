@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürünler | StilCrochet</title>
+    <meta name="description" content="StilCrochet el yapımı amigurumi ürünleri: anahtarlıklar, bebekler ve daha fazlası. Bu site bir tasarım örneğidir.">
+    <meta name="theme-color" content="#3B2A1A">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+</head>
+<body>
+   <a class="icerige-gec" href="#icerik">İçeriğe geç</a>
+   <nav class="navbar" aria-label="Ana menü">
+        <a href="index.html" class="marka">StilCrochet</a>
+        <div class="menu-linkleri">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="index.html#tarifler">Örgü Tarifleri</a>
+        <a href="urunler.html" aria-current="page">Ürünler</a>
+        <a href="hakkimizda.html">Hakkımızda</a>
+        <a href="iletisim.html">İletişim</a>
+        </div>
+        <div class="yanyana">
+        <label for="arama" class="gorunmez">Sitede ara</label>
+        <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input type="search" name="arama" id="arama" placeholder="arama"></div>
+   </nav>
+
+   <main id="icerik" class="alt-sayfa" tabindex="-1">
+    <nav class="yol" aria-label="Sayfa yolu">
+        <a href="index.html">Ana Sayfa</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Ürünler</span>
+    </nav>
+
+    <section class="sayfa-baslik">
+        <p class="ust-yazi">El emeği koleksiyon</p>
+        <h1>Ürünler</h1>
+        <p>Her biri tek tek elde örülen amigurumi anahtarlıklar, bebekler ve daha fazlası. Kategori seçerek ya da arayarak ürünleri süzebilirsiniz.</p>
+    </section>
+
+    <section class="urun-listesi-bolum" id="urunler">
+        <!-- Kategori düğmeleri data.js'teki ürünlerden kendiliğinden oluşur -->
+        <div class="filtre-butonlari" id="kategori-filtresi" role="group" aria-label="Kategoriye göre süz"></div>
+
+        <!-- Ürün kartları data.js'ten oluşturulur (yeni ürün: data.js'teki URUNLER listesine kayıt ekleyin) -->
+        <div class="urun-grid tum-urunler" id="urun-listesi"></div>
+        <p class="sonuc-yok" id="sonuc-yok" role="status" hidden>Aramanıza uygun ürün bulunamadı.</p>
+        <noscript><p class="sonuc-yok">Ürünleri görmek için tarayıcınızda JavaScript'i açın.</p></noscript>
+    </section>
+   </main>
+
+   <footer class="altbilgi">
+    <div class="altbilgi-ic">
+        <div class="altbilgi-marka">
+            <a href="index.html" class="altbilgi-logo">StilCrochet</a>
+            <p>El yapımı amigurumi ve örgü tasarımları, her seviyeye örgü tarifleri.</p>
+        </div>
+        <nav aria-label="Alt menü">
+            <h2 class="altbilgi-baslik">Menü</h2>
+            <ul>
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="urunler.html">Ürünler</a></li>
+                <li><a href="index.html#tarifler">Örgü Tarifleri</a></li>
+                <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+        </nav>
+        <div>
+            <h2 class="altbilgi-baslik">İletişim <span>(örnek bilgiler)</span></h2>
+            <ul>
+                <li><i class="fa-regular fa-envelope" aria-hidden="true"></i> merhaba@stilcrochet.example</li>
+                <li><i class="fa-brands fa-instagram" aria-hidden="true"></i> @stilcrochet</li>
+                <li><i class="fa-brands fa-pinterest" aria-hidden="true"></i> /stilcrochet</li>
+                <li><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Bursa, Türkiye</li>
+            </ul>
+        </div>
+    </div>
+    <div class="altbilgi-alt">
+        <p>© 2026 StilCrochet</p>
+        <p>Bu site bir tasarım örneğidir, satış yapılmamaktadır.</p>
+    </div>
+   </footer>
+  <script src="data.js"></script>
+  <script>
+
+const liste = document.getElementById("urun-listesi")
+const filtreKutusu = document.getElementById("kategori-filtresi")
+const sonucYok = document.getElementById("sonuc-yok")
+const aramaKutusu = document.getElementById("arama")
+let seciliKategori = null
+// null → "Tümü"
+
+// 1. Kartları ve kategori düğmelerini data.js'ten oluştur
+if (typeof URUNLER !== "undefined") {
+    URUNLER.forEach((urun) => {
+        const kart = urunKartiOlustur(urun)
+        kart.dataset.kategori = urun.kategori
+        liste.append(kart)
+    })
+
+    // Kategoriler: ürünlerde geçtiği sırayla, tekrarsız (yeni kategori kendiliğinden eklenir)
+    const kategoriler = [...new Set(URUNLER.map((urun) => urun.kategori))]
+    dugmeEkle("Tümü", null, URUNLER.length)
+    kategoriler.forEach((kategori) => {
+        const sayi = URUNLER.filter((urun) => urun.kategori === kategori).length
+        dugmeEkle(kategori, kategori, sayi)
+    })
+
+    // Adreste kategori varsa (urunler.html?kategori=Anahtarlık) onunla aç
+    const adresteki = new URLSearchParams(window.location.search).get("kategori")
+    seciliKategori = kategoriler.includes(adresteki) ? adresteki : null
+    guncelle()
+} else {
+    // data.js yüklenemediyse sayfa hata vermesin, kısa bir not göstersin
+    filtreKutusu.hidden = true
+    sonucYok.textContent = "Ürünler şu anda yüklenemedi."
+    sonucYok.hidden = false
+}
+
+function dugmeEkle(yazi, kategori, sayi) {
+    const dugme = el("button", "filtre-btn", yazi + " (" + sayi + ")")
+    dugme.type = "button"
+    dugme.dataset.kategori = kategori || ""
+    dugme.addEventListener("click", () => {
+        seciliKategori = kategori
+        adresiGuncelle()
+        guncelle()
+    })
+    filtreKutusu.append(dugme)
+}
+
+// 2. Seçili kategoriye ve aramaya uyan kartları göster
+function guncelle() {
+    const aranan = aramaKutusu.value.trim().toLocaleLowerCase("tr")
+    let gorunen = 0
+    liste.querySelectorAll(".urun-kart").forEach((kart) => {
+        const kategoriUygun = !seciliKategori || kart.dataset.kategori === seciliKategori
+        const aramaUygun = kart.textContent.toLocaleLowerCase("tr").includes(aranan)
+        kart.hidden = !(kategoriUygun && aramaUygun)
+        if (!kart.hidden) gorunen++
+    })
+    // aria-pressed → hangi düğmenin seçili olduğunu ekran okuyucuya da söyler
+    filtreKutusu.querySelectorAll(".filtre-btn").forEach((dugme) => {
+        dugme.setAttribute("aria-pressed", String((dugme.dataset.kategori || null) === seciliKategori))
+    })
+    sonucYok.hidden = gorunen > 0
+}
+
+// Seçilen kategori adrese yazılsın: sayfa yenilenince ya da paylaşılınca aynı filtre açılır
+function adresiGuncelle() {
+    const adres = new URL(window.location.href)
+    if (seciliKategori) adres.searchParams.set("kategori", seciliKategori)
+    else adres.searchParams.delete("kategori")
+    try {
+        history.replaceState(null, "", adres)
+    } catch (hata) {
+        // Bazı tarayıcılar bilgisayardan açılan dosyalarda (file://) buna izin vermez; filtre yine çalışır
+    }
+}
+
+// 3. Arama — bu sayfada kartları süzer (seçili kategoriyle birlikte)
+aramaKutusu.addEventListener("input", guncelle)
+aramaKutusu.addEventListener("keydown", (olay) => {
+    if (olay.key === "Enter") aramaKutusu.blur()
+    if (olay.key === "Escape") {
+        aramaKutusu.value = ""
+        guncelle()
+    }
+})
+
+  </script>
+</body>
+</html>

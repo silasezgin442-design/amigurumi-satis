@@ -31,7 +31,7 @@
         <div class="menu-linkleri">
         <a href="#anasayfa">Ana Sayfa</a>
         <a href="#tarifler">Örgü Tarifleri</a>
-        <a href="#urunler">Ürünler</a>
+        <a href="urunler.html">Ürünler</a>
         <a href="hakkimizda.html">Hakkımızda</a>
         <a href="iletisim.html">İletişim</a>
         </div>
@@ -45,7 +45,7 @@
     <p class="ana-başlık">Amigurumi & Örgü Atölyesi</p>
     <h1 class="ikinci-başlık">StilCrochet <br> koleksiyonu</h1>
     <p class="açıklama">Tasarım harikası el emeği amigurumi ve yün ipliklerle hayallerinizi örün. <br>Hemen keşfedin!</p>
-    <a href="#urunler" class="buttons">Ürünleri İncele</a>
+    <a href="urunler.html" class="buttons">Ürünleri İncele</a>
     </div>
     <section class="ana-kapsayici1 " id="neden">
         <div class="bolum-baslik ">
@@ -91,6 +91,9 @@
   <div class="urun-grid" id="urun-listesi"></div>
   <noscript><p class="sonuc-yok">Ürünleri görmek için tarayıcınızda JavaScript'i açın.</p></noscript>
   <p class="sonuc-yok" role="status" hidden>Aramanıza uygun ürün bulunamadı.</p>
+  <div class="benzer-alt">
+    <a href="urunler.html" class="ikincil-btn">Tüm Ürünleri Gör</a>
+  </div>
 </section>
     
    <section class="ana-kapsayici3 " id="tarifler">
@@ -119,7 +122,7 @@
             <h2 class="altbilgi-baslik">Menü</h2>
             <ul>
                 <li><a href="#anasayfa">Ana Sayfa</a></li>
-                <li><a href="#urunler">Ürünler</a></li>
+                <li><a href="urunler.html">Ürünler</a></li>
                 <li><a href="#tarifler">Örgü Tarifleri</a></li>
                 <li><a href="hakkimizda.html">Hakkımızda</a></li>
                 <li><a href="iletisim.html">İletişim</a></li>
@@ -146,7 +149,8 @@
 // Kartları data.js'ten oluştur (arama ve animasyon kodları bu kartları kullanır, o yüzden en başta)
 if (typeof URUNLER !== "undefined") {
     const urunListesi = document.getElementById("urun-listesi")
-    URUNLER.forEach((urun) => urunListesi.append(urunKartiOlustur(urun)))
+    // Ana sayfada sadece ilk 4 ürün ("Öne Çıkan"); hepsi urunler.html'de
+    URUNLER.slice(0, 4).forEach((urun) => urunListesi.append(urunKartiOlustur(urun)))
     const tarifListesi = document.getElementById("tarif-listesi")
     TARIFLER.forEach((tarif) => tarifListesi.append(tarifKartiOlustur(tarif)))
 } else {
