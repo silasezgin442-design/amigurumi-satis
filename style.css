@@ -266,11 +266,8 @@ a{
     box-shadow: var(--golge);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-/* Resmin tamamı görünsün: dikey 3:4 kutu, resim kesilmeden içine sığar;
-   oranı tutmayan kenarlar fotoğrafların duvar rengine yakın zeminle dolar */
 .suanlik-resim{
-    aspect-ratio: 3 / 4;
-    background-color: #EDE9E3;
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -279,7 +276,9 @@ a{
 .suanlik-resim img{
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    /* Dikey bebek fotoğraflarında yüzler kesilmesin: kırpma üst tarafa yakın */
+    object-position: center 20%;
     display: block;
     transition: all 0.4s ease;
 }
@@ -848,10 +847,14 @@ button:focus-visible,
         line-height: 1.4;
     }
 
-    /* Ürünler: 2'li, resim kutusu masaüstüyle aynı 3:4, fiyat ve düğme alt alta */
+    /* Ürünler: 2'li, kare resim, fiyat ve düğme alt alta */
     .urun-grid{
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
+    }
+    .suanlik-resim{
+        height: auto;
+        aspect-ratio: 1 / 1;
     }
     .urun-kart .metin{
         padding: 12px 12px 4px;
